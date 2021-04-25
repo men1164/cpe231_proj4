@@ -1,6 +1,7 @@
 @extends('layouts.loginTheme')
 
 @section('content')
+    <img src="css/kmutt-logo2.png" class="w-1/5 h-auto pb-7">
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="w-80">
