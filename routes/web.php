@@ -13,14 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/************** Main Menu **************/
 Route::get('/', function () {
     return view('welcome');
 });
 
+/************** Student Role **************/
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/registration', function () {
+    return view('regisStd');
+});
+
+Route::get('/withdraw', function() {
+    return view('wdStd');
+});
+
+Route::get('/gpax', function() {
+    return view('gradeStd');
+});
+
+Route::get('/pay', function() {
+    return view('payStd');
+});
+
+/************** Professor (Teacher) Role **************/
 Route::prefix('tch')->group(function ()
 {
     Route::get('/login', [App\Http\Controllers\Auth\TeacherLoginController::class, 'showLoginForm'])->name('teacher.login');
