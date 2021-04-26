@@ -22,8 +22,8 @@
         <div class="grid place-items-center bg-gray-200 h-full">
             <div class="flex flex-col items-center justify-center bg-white w-4/5 h-2/5 rounded-2xl shadow-2xl">
                 <p class="text-5xl text-darkblue2">Welcome to Student Registration</p>
-                <p class="text-base mt-2 text-darkblue2">by Kimetsu no Database 2 group</p>
-                <p class="text-xl text-black mt-6">Please choose your role.</p>
+                <p class="text-base mt-2 text-darkblue2">by Kimetsu no Database 2</p>
+                <p class="text-xl text-black mt-6">Sign in as</p>
                 <div class="flex flex-row justify-center items-center mt-6 w-4/5">
                     <a href="{{ route('login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student</a>
                     <a href="{{ route('teacher.login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Professor (Teacher)</a>
