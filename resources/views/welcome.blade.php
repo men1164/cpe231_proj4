@@ -20,18 +20,22 @@
     </head>
     <body>
         <div class="grid place-items-center bg-gray-200 h-full">
-            <div class="flex flex-col items-center justify-center bg-white w-4/5 h-2/5 rounded-2xl shadow-2xl">
+            <div class="flex flex-col items-center justify-center bg-white w-4/5 h-3/5 rounded-2xl shadow-2xl">
                 <p class="text-5xl text-darkblue2">Welcome to Student Registration</p>
                 <p class="text-base mt-2 text-darkblue2">by Kimetsu no Database 2</p>
-                <p class="text-xl text-black mt-6">Sign in as</p>
-                <div class="flex flex-row justify-center items-center mt-6 w-4/5">
+                <p class="text-xl text-black mt-6">Sign in as (Role)</p>
+                <div class="flex flex-row justify-center items-center mt-4 w-4/5">
                     <a href="{{ route('login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student</a>
-                    <a href="{{ route('teacher.login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Professor (Teacher)</a>
+                    <a href="{{ route('teacher.login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Teacher</a>
+                </div>
 
                     <!--<a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Teacher</a>
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Admin</a> -->
-                            
-                    <a href="{{ route('register') }}" class="w-2/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student Register</a>     
+
+                <p class="text-xl text-black mt-9">Register new account</p>        
+                <div class="flex flex-row justify-center items-center mt-4 w-4/5">
+                    <a href="{{ route('register') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student Register</a>
+                    <a href="{{ route('teacher.register') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Teacher Register</a>      
                 </div>              
             </div>
         </div>
