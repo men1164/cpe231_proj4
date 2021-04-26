@@ -25,8 +25,9 @@
                 <p class="text-base mt-2 text-darkblue2">by Kimetsu no Database 2</p>
                 <p class="text-xl text-black mt-6">Sign in as (Role)</p>
                 <div class="flex flex-row justify-center items-center mt-4 w-4/5">
-                    <a href="{{ route('login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student</a>
-                    <a href="{{ route('teacher.login') }}" class="w-1/5 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Teacher</a>
+                    <a href="{{ route('login') }}" class="w-1/6 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Student</a>
+                    <a href="{{ route('teacher.login') }}" class="w-1/6 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Teacher</a>
+                    <a href="{{ route('admin.login') }}" class="w-1/6 focus:outline-none text-white text-center text-sm rounded-full py-3 px-6 ml-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">Admin</a>
                 </div>
 
                     <!--<a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Teacher</a>
