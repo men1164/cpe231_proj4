@@ -3,12 +3,7 @@
 @section('content')
         <div class="grid grid-cols-3 gap-9 ml-60 h-full bg-gray-200 p-8">
             <div class="flex justify-center items-center grid-cols-3 col-start-1 col-end-4 bg-white rounded-xl shadow-lg">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                <p class="text-4xl text-darkblue2 font-bold">Teacher Role</p>
+                <p class="text-4xl text-darkblue2 font-bold">Welcome {{ Auth::user()->id }}</p>
             </div>
             <div class="flex flex-col col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg pl-9 pt-9 pb-0">
                 <p class="text-2xl">Current GPAX</p>
