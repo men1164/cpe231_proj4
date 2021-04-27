@@ -23,7 +23,7 @@ class TeacherRegisterController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric',
-            'password' => 'required|min:4',
+            'password' => 'required|min:4|confirmed',
         ]);
 
         if(Teacher::create(['id' => $request->id, 'password' => Hash::make($request->password)]))
