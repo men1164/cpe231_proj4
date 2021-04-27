@@ -38,6 +38,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /** Replace method, using id as username instead of email field **/
     protected $username = 'id';
 
     public function username()
