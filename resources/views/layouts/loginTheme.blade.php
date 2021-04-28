@@ -44,6 +44,5 @@
                                     </div>
                                 </li>
                                 -->
-        </div>
     </body>
-    </html>
+</html>

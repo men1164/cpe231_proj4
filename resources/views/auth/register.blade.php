@@ -1,10 +1,9 @@
-@extends('layouts.loginTheme')
+@extends('layouts.regisTheme')
 
 @section('content')
-    <img src="css/kmutt-logo2.png" class="w-1/5 h-auto pb-7">
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="w-80">
+        <div class="col-start-1 col-end-2">
             <h2 class="text-2xl font-bold text-center text-kmutt-or">Register (Complex Form #1)</h2>
             <div class="mt-8 max-w-md">
                 <div class="grid grid-cols-1 gap-6">
@@ -86,14 +85,46 @@
                                 </label>
                             </div>
                         </div>
-                    </div> -->
+                    </div> --> 
+                </div>
+            </div> 
+        </div>
+        <div class="col-start-2 col-end-3">
+            <div class="mt-8 max-w-md">
+                <div class="grid grid-cols-1 gap-6">
+                    <label class="block">
+                        <input
+                        type="text"
+                        class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                        placeholder="Firstname"
+                        id="FirstName"
+                        name="FirstName"
+                        required
+                        />
+                    </label>
+                    <label class="block">
+                        <input
+                        type="text"
+                        class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                        placeholder="LastName"
+                        id="LastName"
+                        name="LastName"
+                        required
+                        />
+                    </label>
+                    <label class="block">
+                        <input
+                        type="date"
+                        class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                        />
+                    </label>
                     <div class='flex flex-col items-center w-full pt-6'>
                         <button type="submit" class="w-1/3 focus:outline-none text-white text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">
                             Submit
                         </button>
-                    </div>     
+                    </div>    
                 </div>
-            </div> 
+            </div>
         </div>
     </form>
 @endsection
