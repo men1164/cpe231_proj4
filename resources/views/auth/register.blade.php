@@ -76,6 +76,14 @@
                         name="BirthDate"
                         />
                     </label>
+                    <label class="block mb-2">
+                        <span class="text-gray-700">Gender:</span>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Gender" id="Gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
+                    </label>
                     <label class="block mb-4">
                         <span class="text-gray-700">CitizenID:</span>
                         <input

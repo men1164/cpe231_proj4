@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('FirstName', 60);
             $table->string('LastName', 60);
             $table->date('BirthDate');
-            $table->char('Genger', 1);
+            $table->char('Gender', 1);
             $table->bigInteger('CitizenID');
             $table->text('Email');
             $table->text('Personal_email');
