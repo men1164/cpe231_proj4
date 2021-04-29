@@ -144,7 +144,7 @@
             <div class="flex justify-center">
                 <div class="absolute bottom-5 text-xs text-center text-gray-400">
                     <span class="flex items-center justify-center text-gray-400 mb-2">
-                        <a href="https://github.com/men1164/cpe231_proj">
+                        <a href="https://github.com/men1164/cpe231_proj4">
                             <svg class="h-5 w-5" 
                                 fill="gray"
                                 viewBox="0 0 24 24">
