@@ -111,10 +111,10 @@
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Degree:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>Bachelor</option>
-                            <option>Master</option>
-                            <option>Doctor</option>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Degree" id="Degree">
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Master">Master</option>
+                            <option value="Doctor">Doctor</option>
                         </select>
                     </label>
                     <label class="block mb-2">
@@ -135,19 +135,19 @@
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Program:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="ProgramID" id="ProgramID">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Room:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                            <option>D</option>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Room" id="Room">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
                         </select>
                     </label>
                     <label class="block">
