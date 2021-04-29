@@ -4,6 +4,32 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <h2 class="text-2xl font-bold text-center text-kmutt-or">Register (Complex Form #1)</h2>
+            <!-- Error Log -->
+            @error('id')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('password')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('CitizenID')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Email')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Personal_email')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
             <div class="grid grid-cols-1 gap-2 mt-8">
                     <label class="block mb-7">
                         <input
@@ -34,17 +60,6 @@
                         name="password_confirmation"
                         required
                         />
-                        <!-- Error Log -->
-                        @error('id')
-                            <span class="text-red-600 text-sm" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Full Name:</span>
