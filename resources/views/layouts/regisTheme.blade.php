@@ -22,10 +22,8 @@
         </style>
     </head>
     <body>
-        <div class="grid place-items-center bg-gray-200 h-full">
-            <div class="grid grid-cols-2 place-items-center bg-white w-4/5 h-4/5 rounded-2xl shadow-2xl">
+        <div class="grid place-items-center bg-white w-full h-auto p-8">
                 @yield('content')
-            </div>
         </div>
     </body>
 </html>
