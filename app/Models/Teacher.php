@@ -14,6 +14,8 @@ class Teacher extends Authenticatable
     protected $guard = 'teacher';
     protected $table = 'tchUser';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +24,16 @@ class Teacher extends Authenticatable
     protected $fillable = [
         'id',
         'password',
+        'FirstName',
+        'LastName',
+        'BirthDate',
+        'Gender',
+        'CitizenID',
+        'Email',
+        'Personal_email',
+        'Grad_from',
+        'Grad_degree',
+        'DepartmentID'
     ];
 
     /**

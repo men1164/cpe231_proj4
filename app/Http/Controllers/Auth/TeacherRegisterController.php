@@ -24,9 +24,28 @@ class TeacherRegisterController extends Controller
         $this->validate($request, [
             'id' => 'required|numeric',
             'password' => 'required|min:4|confirmed',
+            'FirstName' => 'required|string',
+            'LastName' => 'required|string',
+            'CitizenID' => 'required|numeric',
+            'Email' => 'required|email',
+            'Personal_email' => 'required|email',
+            'Grad_from' => 'required|string',
         ]);
 
-        if(Teacher::create(['id' => $request->id, 'password' => Hash::make($request->password)]))
+        if(Teacher::create([
+            'id' => $request->id,
+            'password' => Hash::make($request->password),
+            'FirstName' => $request->FirstName,
+            'LastName' => $request->LastName,
+            'BirthDate' => $request->BirthDate,
+            'Gender' => $request->Gender,
+            'CitizenID' => $request->CitizenID,
+            'Email' => $request->Email,
+            'Personal_email' => $request->Personal_email,
+            'Grad_from' => $request->Grad_from,
+            'Grad_degree' => $request->Grad_degree,
+            'DepartmentID' => $request->DepartmentID,
+            ]))
         {
             return redirect()->back()->with('success', 'Succesfully Registered');
         }

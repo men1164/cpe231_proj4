@@ -5,7 +5,40 @@
         @csrf
             <h2 class="text-2xl font-bold text-center text-kmutt-or">Register (Complex Form #2)</h2>
             <p class="text-base text-center text-kmutt-or">Professor (Teacher) Role</p>
+
+            <!-- Error Log -->
+            @error('id')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('password')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('CitizenID')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Email')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Personal_email')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
             <div class="grid grid-cols-1 gap-2 mt-8">
+                    <!-- Status message -->
+                    @if(session('success'))
+                        <p class="text-green-500 text-sm text-center mt-3">{{ session('success') }}</p>
+                    @elseif(session('failed'))
+                        <p class="text-red-600 text-sm text-center mt-3">{{ session('failed') }}</p>
+                    @endif
                     <label class="block mb-7">
                         <input
                         type="text"
@@ -35,17 +68,6 @@
                         name="password_confirmation"
                         required
                         />
-                        <!-- Error Log -->
-                        @error('id')
-                            <span class="text-red-600 text-sm" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Full Name:</span>
@@ -76,6 +98,14 @@
                         id="BirthDate"
                         name="BirthDate"
                         />
+                    </label>
+                    <label class="block mb-2">
+                        <span class="text-gray-700">Gender:</span>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Gender" id="Gender">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="O">Other</option>
+                        </select>
                     </label>
                     <label class="block mb-4">
                         <span class="text-gray-700">CitizenID:</span>
@@ -115,7 +145,7 @@
                         <input
                         type="text"
                         class="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                        placeholder="sample@gmail.com"
+                        placeholder="Oxford"
                         id="Grad_from"
                         name="Grad_from"
                         required
@@ -123,10 +153,10 @@
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Degree Graduated:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>Bachelor</option>
-                            <option>Master</option>
-                            <option>Doctor</option>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Grad_degree" id="Grad_degree">
+                            <option value="Bachelor">Bachelor</option>
+                            <option value="Master">Master</option>
+                            <option value="Doctor">Doctor</option>
                         </select>
                     </label>
                     <label class="block mb-2">
@@ -139,10 +169,10 @@
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Department:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="DepartmentID" id="DepartmentID">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                     </label>
                     <div class='flex justify-center w-full pt-6'>
