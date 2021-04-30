@@ -24,6 +24,6 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('tchHome');
+        return view('tch.tchHome');
     }
 }

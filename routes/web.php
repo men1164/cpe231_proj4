@@ -24,19 +24,19 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/registration', function () {
-    return view('regisStd');
+    return view('std.regisStd');
 });
 
 Route::get('/withdraw', function() {
-    return view('wdStd');
+    return view('std.wdStd');
 });
 
 Route::get('/gpax', function() {
-    return view('gradeStd');
+    return view('std.gradeStd');
 });
 
 Route::get('/pay', function() {
-    return view('payStd');
+    return view('std.payStd');
 });
 
 /************** Professor (Teacher) Role **************/
