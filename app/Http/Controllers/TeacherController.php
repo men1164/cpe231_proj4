@@ -26,4 +26,9 @@ class TeacherController extends Controller
     {
         return view('tch.tchHome');
     }
+
+    public function showAdvisor()
+    {
+        
+    }
 }

@@ -45,32 +45,29 @@
                 <li>
                     <a href="#"
                     class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
-                    <span class="flex items-center justify-center text-lg text-green-400">
-                            <svg fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                class="h-6 w-6">
-                                <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </span>
-                        <span class="ml-3">Registration</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                    class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
-                        <span class="flex items-center justify-center text-lg text-red-400">
-                            <svg class="h-6 w-6" 
+                        <span class="flex items-center justify-center text-lg text-green-400">
+                            <svg class="h-6 w-6"
                                 fill="none" 
                                 viewBox="0 0 24 24" 
                                 stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                         </span>
-                        <span class="ml-3">Withdraw</span>
+                        <span class="ml-3">Register List</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('teacher.advise') }}"
+                    class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
+                        <span class="flex items-center justify-center text-lg text-darkblue2">
+                            <svg class="h-6 w-6" 
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </span>
+                        <span class="ml-3">Advisor</span>
                     </a>
                 </li>
                 <li>
@@ -84,21 +81,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </span>
-                        <span class="ml-3">Grade History</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                    class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
-                        <span class="flex items-center justify-center text-lg text-darkblue2">
-                            <svg class="h-6 w-6" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </span>
-                        <span class="ml-3">Payment</span>
+                        <span class="ml-3">Grader</span>
                     </a>
                 </li>
                 <li>
