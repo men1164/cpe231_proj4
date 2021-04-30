@@ -54,7 +54,7 @@
             </div> -->
         </div>
         <div class="row-start-2 row-end-3 bg-white rounded-xl shadow-lg">
-            <div class="flex flex-row items-center ml-12 mt-12">
+            <div class="flex flex-row items-center ml-12 mt-9">
                 <p class="text-lg font-semibold text-kmutt-or">Search student for add to advise list: </p>
                 <label class="ml-5">
                     <input
@@ -73,6 +73,39 @@
                         </svg>
                     </span>
                 </button>
+            </div>
+            <div class="flex flex-col ml-14 mr-14 mt-5 h-3/5 w-auto">
+                <div class="flex-grow overflow-auto">
+                    <table class="relative w-full border rounded-3xl">
+                        <thead>
+                            <tr>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">StudentID</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Firstname</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Lastname</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-300 bg-gray-100">
+                            <tr>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="flex items-center justify-center px-6 py-4 text-center">
+                                    <button type="button" class="w-8 h-8 focus:outline-none rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
+                                        <span class="flex items-center justify-center text-white">
+                                            <svg class="h-6 w-6"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                            </svg>  
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>            
         </div>
     </div>
