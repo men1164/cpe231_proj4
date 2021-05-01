@@ -31,6 +31,6 @@ class TeacherLoginController extends Controller
             return redirect()->intended(route('teacher.home'));
         }
 
-        return redirect()->back()->withInput($request->only('id'));
+        return redirect()->back()->withInput($request->only('id'))->with('failed', 'Wrong password or UserID');
     }
 }

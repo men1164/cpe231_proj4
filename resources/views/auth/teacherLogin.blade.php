@@ -39,6 +39,9 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        @if(session('failed'))
+                            <p class="text-red-600 text-sm text-center mt-3">{{ session('failed') }}</p>
+                        @endif
                     </label>
                     <div class='flex flex-col items-center w-full pt-6'>
                         <button type="submit" class="w-1/3 focus:outline-none text-white text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">
