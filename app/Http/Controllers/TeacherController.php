@@ -30,6 +30,7 @@ class TeacherController extends Controller
         return view('tch.tchHome');
     }
 
+    /** Show advise lists **/
     public function showAdviseList()
     {
         $tchID = Auth::id();
@@ -43,10 +44,11 @@ class TeacherController extends Controller
         return view('tch.tchAdvisor', ['lists' => $lists]);
     }
 
+    /** Show student lists search result **/
     public function showStdList(Request $request)
     {
         $tchID = Auth::id();
-        
+
         $results = User::where('FirstName', 'like', $request->search.'%')
                         ->get();
 
@@ -62,6 +64,7 @@ class TeacherController extends Controller
             ]);
     }
 
+    /** Add student into advise lists **/
     public function addStudent(Request $request)
     {
         $tchID = Auth::id();
