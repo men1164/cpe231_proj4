@@ -61,7 +61,10 @@ class TeacherController extends Controller
             'tch_id' => $tchID,
             ]))
         {
-            return view('tch.tchAdvisor');
+            $lists = Advisor::with('student')
+                        ->get();
+
+            return view('tch.tchAdvisor', ['lists' => $lists]);
         }
     }
 }
