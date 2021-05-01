@@ -96,7 +96,6 @@
                         </table>
                     </form>
                     @endisset
-                </form>
                 </div>
             </div>            
         </div>
