@@ -21,9 +21,9 @@
                         <tbody class="divide-y divide-gray-300 bg-gray-100">
                             @foreach($lists as $list)
                             <tr>
-                                <td class="px-6 py-4 text-center">{{ $list->std_id }}</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">{{ $list->student->id }}</td>
+                                <td class="px-6 py-4 text-center">{{ $list->student->FirstName }}</td>
+                                <td class="px-6 py-4 text-center">{{ $list->student->LastName }}</td>
                             </tr>
                             @endforeach
                         </tbody>

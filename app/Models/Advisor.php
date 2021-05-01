@@ -17,8 +17,13 @@ class Advisor extends Model
         'tch_id',
     ];
 
-    // public function student()
-    // {
-    //     return $this->belongTo(User::class);
-    // }
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'std_id');
+    }
+
+    public function tchUser()
+    {
+        return $this->belongsTo(Teacher::class, 'tch_id');
+    }
 }

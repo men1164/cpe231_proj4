@@ -32,7 +32,8 @@ class TeacherController extends Controller
 
     public function showAdviseList()
     {
-        $lists = Advisor::get();
+        $lists = Advisor::with('student')
+                        ->get();
 
         return view('tch.tchAdvisor', ['lists' => $lists]);
     }
@@ -42,7 +43,13 @@ class TeacherController extends Controller
         $results = User::where('FirstName', 'like', $request->search.'%')
                         ->get();
 
-        return view('tch.tchAdvisor', ['results' => $results]);
+        $lists = Advisor::with('student')
+                        ->get();
+
+        return view('tch.tchAdvisor', [
+            'results' => $results,
+            'lists' => $lists
+            ]);
     }
 
     public function addStudent(Request $request)
