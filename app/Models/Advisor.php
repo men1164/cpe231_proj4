@@ -22,7 +22,7 @@ class Advisor extends Model
         return $this->belongsTo(User::class, 'std_id');
     }
 
-    public function tchUser()
+    public function teacher()
     {
         return $this->belongsTo(Teacher::class, 'tch_id');
     }

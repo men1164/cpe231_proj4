@@ -8,26 +8,35 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <img src="/css/demo-profile.jpg" class="w-auto h-48 col-span-1 rounded-xl">
-                <div class="ml-16 text-gray-800">
+                <p class="text-4xl text-darkblue2 mr-12">Welcome, {{ Auth::user()->FirstName }}</p>
+                <div class="text-gray-800">
                     <p>Name: </p>
+                    <p>Program: </p>
                     <p>Department: </p>
                     <p>Faculty: </p>
                 </div>
                 <div class="ml-5 text-gray-500">
-                    <p>Thanasit Suwanposri</p>
+                    <p>{{ Auth::user()->FirstName }} {{ Auth::user()->LastName }}</p>
+                    <p>International Program</p>
                     <p>Computer Engineering</p>
                     <p>Engineering</p>
                 </div>
-                <div class="ml-16 text-gray-800">
+                <div class="ml-10 text-gray-800">
                     <p>Email: </p>
                     <p>Personal Email: </p>
-                    <p>Phone: </p>
+                    <p>Advisor: </p>
+                    @for($i = 1; $i < $advisorCount; $i++)
+                        <br>
+                    @endfor
                 </div>
                 <div class="ml-5 text-gray-500">
-                    <p>starboy@mail.kmutt.ac.th</p>
-                    <p>starboy2@gmail.com</p>
-                    <p>092-222-2222</p>
+                    <p>{{ Auth::user()->Email }}</p>
+                    <p>{{ Auth::user()->Personal_email }}</p>
+                    @isset($advisorLists)
+                        @foreach($advisorLists as $list)
+                            <p>{{ $list->teacher->FirstName }}</p>
+                        @endforeach
+                    @endisset
                 </div>
             </div>
             <div class="flex flex-col col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg pl-9 pt-9 pb-0">

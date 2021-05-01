@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Advisor;
+use App\Models\Teacher;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('std.home');
+        $stdID = Auth::id();
+
+        $advisorLists = Advisor::with('teacher')
+                        ->whereHas('teacher', function($q) use($stdID) {
+                            $q->where('std_id', '=', $stdID);
+                        })->get();
+        
+        $advisorCount = $advisorLists->count();
+        
+        return view('std.home', [
+            'advisorLists' => $advisorLists,
+            'advisorCount' => $advisorCount]);
     }
 }
