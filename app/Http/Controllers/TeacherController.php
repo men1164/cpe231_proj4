@@ -32,7 +32,12 @@ class TeacherController extends Controller
 
     public function showAdviseList()
     {
+        $tchID = Auth::id();
+
         $lists = Advisor::with('student')
+                        ->whereHas('student', function($q) use($tchID) {
+                            $q->where('tch_id', '=', $tchID);
+                        })
                         ->get();
 
         return view('tch.tchAdvisor', ['lists' => $lists]);
@@ -40,10 +45,15 @@ class TeacherController extends Controller
 
     public function showStdList(Request $request)
     {
+        $tchID = Auth::id();
+        
         $results = User::where('FirstName', 'like', $request->search.'%')
                         ->get();
 
         $lists = Advisor::with('student')
+                        ->whereHas('student', function($q) use($tchID) {
+                            $q->where('tch_id', '=', $tchID);
+                        })
                         ->get();
 
         return view('tch.tchAdvisor', [
@@ -62,6 +72,9 @@ class TeacherController extends Controller
             ]))
         {
             $lists = Advisor::with('student')
+                        ->whereHas('student', function($q) use($tchID) {
+                            $q->where('tch_id', '=', $tchID);
+                        })
                         ->get();
 
             return view('tch.tchAdvisor', ['lists' => $lists]);
