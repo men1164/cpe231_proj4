@@ -27,9 +27,14 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        
-
         return view('tch.tchHome');
+    }
+
+    public function showAdviseList()
+    {
+        $lists = Advisor::get();
+
+        return view('tch.tchAdvisor', ['lists' => $lists]);
     }
 
     public function showStdList(Request $request)

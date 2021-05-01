@@ -5,53 +5,32 @@
     <div class="grid grid-rows-2 gap-8 ml-60 h-full bg-gray-200 p-8">
         <div class="row-start-1 row-end-2 bg-white rounded-xl shadow-lg">
             <p class="ml-12 mt-12 text-3xl font-semibold text-darkblue2">Your current students</p>
+            @if(empty($lists))
             <p class="ml-12 mt-2 text-lg text-kmutt-or">You have not advise to any student.</p>
-            <!--
+            @else
             <div class="flex flex-col ml-14 mr-14 mt-2 h-3/5 w-auto">
                 <div class="flex-grow overflow-auto">
                     <table class="relative w-full border rounded-3xl">
                         <thead>
                             <tr>
-                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Header</th>
-                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Header</th>
-                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Header</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">StudentID</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Firstname</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Lastname</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-300 bg-gray-100">
+                            @foreach($lists as $list)
                             <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">{{ $list->std_id }}</td>
                                 <td class="px-6 py-4 text-center">Column</td>
                                 <td class="px-6 py-4 text-center">Column</td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div> -->
+            </div>
+            @endif
         </div>
         <div class="row-start-2 row-end-3 bg-white rounded-xl shadow-lg">
             <form action="{{ route('showStd') }}" method="POST">
