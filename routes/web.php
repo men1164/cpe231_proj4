@@ -50,14 +50,14 @@ Route::prefix('tch')->group(function ()
     
     Route::post('/advisor', [App\Http\Controllers\TeacherController::class, 'showStdList'])->name('showStd');
     Route::post('/advisor/added', [App\Http\Controllers\TeacherController::class, 'addStudent'])->name('addStd');
-    Route::post('/advisor/deleted', [App\Http\Controllers\TeacherController::class, 'removeStudent'])->name('removeStd');
+    Route::post('/advisor/removed', [App\Http\Controllers\TeacherController::class, 'removeStudent'])->name('removeStd');
 
     Route::get('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'showRegisterForm'])->name('teacher.register');
     Route::post('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'register'])->name('teacher.register.submit');
 });
 
 
-/************** Professor (Teacher) Role **************/
+/************** Admin Role **************/
 Route::prefix('admin')->group(function ()
 {
     Route::get('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])->name('admin.login');
@@ -65,4 +65,5 @@ Route::prefix('admin')->group(function ()
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
 
     Route::get('/advisor', [App\Http\Controllers\AdminController::class, 'adviseManager'])->name('admin.advise');
+    Route::post('/advisor/removed', [App\Http\Controllers\AdminController::class, 'adviseDelete'])->name('admin.removeAdvise');
 });

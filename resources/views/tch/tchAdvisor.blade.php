@@ -28,7 +28,7 @@
                                 <td class="px-6 py-4 text-center">{{ $list->student->FirstName }}</td>
                                 <td class="px-6 py-4 text-center">{{ $list->student->LastName }}</td>
                                 <td class="flex items-center justify-center px-6 py-4 text-center">
-                                    <button name="selected" value="{{ $list->student->id }}" type="submit" class="w-8 h-8 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">
+                                    <button name="selected" value="{{ $list->student->id }}" type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">
                                         <span class="flex items-center justify-center text-white">
                                             <svg class="h-6 w-6" 
                                                 fill="none" 
@@ -95,7 +95,7 @@
                                     <td class="px-6 py-4 text-center">{{ $result->FirstName }}</td>
                                     <td class="px-6 py-4 text-center">{{ $result->LastName }}</td>
                                     <td class="flex items-center justify-center px-6 py-4 text-center">
-                                        <button name="selected" value="{{ $result->id }}" type="submit" class="w-8 h-8 focus:outline-none rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
+                                        <button name="selected" value="{{ $result->id }}" type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
                                             <span class="flex items-center justify-center text-white">
                                                 <svg class="h-6 w-6"
                                                     fill="none"

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Advisor;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -28,6 +31,32 @@ class AdminController extends Controller
 
     public function adviseManager()
     {
-        return view('ad.adminAdvisor');
+        $allLists = Advisor::join('users', 'advisor.std_id', '=', 'users.id')
+                            ->join('tchUser', 'advisor.tch_id', '=', 'tchUser.id')
+                            ->select('users.id as st_id', 'users.FirstName as st_FirstName', 'tchUser.id as tch_id', 'tchUser.FirstName as tch_FirstName')
+                            ->get();
+
+        return view('ad.adminAdvisor',[
+            'lists' => $allLists
+        ]);
+    }
+
+    public function adviseDelete(Request $request)
+    {
+        if(Advisor::where([
+            ['std_id', '=', $request->stdID],
+            ['tch_id', '=', $request->tchID]
+            ])
+            ->delete())
+        {
+            $allLists = Advisor::join('users', 'advisor.std_id', '=', 'users.id')
+                            ->join('tchUser', 'advisor.tch_id', '=', 'tchUser.id')
+                            ->select('users.id as st_id', 'users.FirstName as st_FirstName', 'tchUser.id as tch_id', 'tchUser.FirstName as tch_FirstName')
+                            ->get();
+                    
+            return view('ad.adminAdvisor', [
+                'lists' => $allLists
+            ]);
+        }
     }
 }
