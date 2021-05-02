@@ -63,4 +63,6 @@ Route::prefix('admin')->group(function ()
     Route::get('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
+
+    Route::get('/advisor', [App\Http\Controllers\AdminController::class, 'adviseManager'])->name('admin.advise');
 });

@@ -25,4 +25,9 @@ class AdminController extends Controller
     {
         return view('ad.adminHome');
     }
+
+    public function adviseManager()
+    {
+        return view('ad.adminAdvisor');
+    }
 }

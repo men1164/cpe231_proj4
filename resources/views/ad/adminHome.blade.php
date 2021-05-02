@@ -1,4 +1,4 @@
-@extends('layouts.SBtch')
+@extends('layouts.SBad')
 
 @section('content')
         <div class="grid grid-cols-3 gap-9 ml-60 h-full bg-gray-200 p-8">
