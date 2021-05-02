@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <div class="grid grid-rows-2 gap-8 ml-60 h-full bg-gray-200 p-8">
+    <div class="grid grid-rows-3 gap-8 ml-60 h-full bg-gray-200 p-8">
         <div class="row-start-1 row-end-3 bg-white rounded-xl shadow-lg">
             <p class="ml-12 mt-12 text-3xl font-semibold text-darkblue2">Current advisor lists.</p>
             @isset($lists)
-            <div class="flex flex-col ml-14 mr-14 mt-5 h-3/5 w-auto">
+            <div class="flex flex-col ml-14 mr-14 mt-5 h-2/3 w-auto">
                 <div class="flex-grow overflow-auto">
                     <form action="{{ route('admin.removeAdvise') }}" method="POST">
                     @csrf
@@ -53,6 +53,47 @@
                 </div>
             </div>
             @endisset
+        </div>
+        <div class="row-start-3 row-end-4 bg-white rounded-xl shadow-lg">
+            <p class="ml-12 mt-8 text-2xl font-semibold text-darkblue2">Add new advisor lists.</p>
+            <form action="{{ route('admin.addAdvise') }}" method="POST">
+                @csrf
+                <div class="flex flex-row items-center ml-12 mt-5">
+                    <p class="text-lg font-semibold text-kmutt-or">Student ID: </p>
+                    <label class="ml-2">
+                        <input
+                        type="text"
+                        class="w-40 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        placeholder="6xxxxxxxx"
+                        name="stdID"
+                        id="stdID"
+                        />
+                    </label>
+                    <p class="text-lg font-semibold text-kmutt-or ml-5">Teacher ID: </p>
+                    <label class="ml-2">
+                        <input
+                        type="text"
+                        class="w-40 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        placeholder="1xxxxxxxx"
+                        name="tchID"
+                        id="tchID"
+                        />
+                    </label>
+                    <button type="submit" class="ml-5 w-16 h-10 focus:outline-none rounded-lg bg-green-400 hover:bg-green-500 hover:shadow-lg">
+                        <span class="flex items-center justify-center text-white">
+                            <svg class="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>  
+                        </span>
+                    </button>
+                    @if($errors->any())
+                        <p class="ml-5 text-base text-red-500">{{ $errors->first() }}</p>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
 
