@@ -40,8 +40,13 @@ class TeacherController extends Controller
                             $q->where('tch_id', '=', $tchID);
                         })
                         ->get();
+        
+        $listsCount = $lists->count();
 
-        return view('tch.tchAdvisor', ['lists' => $lists]);
+        return view('tch.tchAdvisor', [
+                    'lists' => $lists,
+                    'listsCount' => $listsCount
+                    ]);
     }
 
     /** Show student lists search result **/
@@ -57,10 +62,13 @@ class TeacherController extends Controller
                             $q->where('tch_id', '=', $tchID);
                         })
                         ->get();
+        
+        $listsCount = $lists->count();
 
         return view('tch.tchAdvisor', [
             'results' => $results,
-            'lists' => $lists
+            'lists' => $lists,
+            'listsCount' => $listsCount
             ]);
     }
 
@@ -79,8 +87,36 @@ class TeacherController extends Controller
                             $q->where('tch_id', '=', $tchID);
                         })
                         ->get();
+            
+            $listsCount = $lists->count();
 
-            return view('tch.tchAdvisor', ['lists' => $lists]);
+            return view('tch.tchAdvisor', [
+                        'lists' => $lists,
+                        'listsCount' => $listsCount]);
+        }
+    }
+
+    public function removeStudent(Request $request)
+    {
+        $tchID = Auth::id();
+
+        if(Advisor::where([
+            ['std_id', '=', $request->selected],
+            ['tch_id', '=', $tchID]])
+            ->delete())
+        {
+            $lists = Advisor::with('student')
+                        ->whereHas('student', function($q) use($tchID) {
+                            $q->where('tch_id', '=', $tchID);
+                        })
+                        ->get();
+            
+            $listsCount = $lists->count();
+
+            return view('tch.tchAdvisor', [
+                        'lists' => $lists,
+                        'listsCount' => $listsCount
+                        ]);
         }
     }
 }

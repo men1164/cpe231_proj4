@@ -50,6 +50,7 @@ Route::prefix('tch')->group(function ()
     
     Route::post('/advisor', [App\Http\Controllers\TeacherController::class, 'showStdList'])->name('showStd');
     Route::post('/advisor/added', [App\Http\Controllers\TeacherController::class, 'addStudent'])->name('addStd');
+    Route::post('/advisor/deleted', [App\Http\Controllers\TeacherController::class, 'removeStudent'])->name('removeStd');
 
     Route::get('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'showRegisterForm'])->name('teacher.register');
     Route::post('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'register'])->name('teacher.register.submit');
