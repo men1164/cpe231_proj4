@@ -32,11 +32,13 @@
                 <div class="ml-5 text-gray-500">
                     <p>{{ Auth::user()->Email }}</p>
                     <p>{{ Auth::user()->Personal_email }}</p>
-                    @isset($advisorLists)
+                    @if($advisorCount == 0)
+                        <p> - </p>
+                    @else
                         @foreach($advisorLists as $list)
                             <p>{{ $list->teacher->FirstName }}</p>
                         @endforeach
-                    @endisset
+                    @endif
                 </div>
             </div>
             <div class="flex flex-col col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg pl-9 pt-9 pb-0">
