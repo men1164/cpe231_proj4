@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -39,6 +41,25 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    public function getDepartment(Request $request)
+    {
+        $departments = DB::table('depInfo')
+                        ->where('FacultyID', '=', $request->FacultyID)
+                        ->pluck('DepartmentName', 'DepartmentID');
+
+        return response()->json($departments);
+    }
+
+    public function getProgram(Request $request)
+    {
+        $programs = DB::table('programInfo')
+                    ->where('DepartmentID', '=', $request->DepartmentID)
+                    ->pluck('ProgramName', 'ProgramID');
+
+        return response()->json($programs);
     }
 
     /**

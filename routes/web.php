@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 /************** Student Role **************/
 Auth::routes();
+Route::get('/register/getDepartment', [App\Http\Controllers\Auth\RegisterController::class, 'getDepartment'])->name('getDepartment');
+Route::get('/register/getProgram', [App\Http\Controllers\Auth\RegisterController::class, 'getProgram'])->name('getProgram');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
