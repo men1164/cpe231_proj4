@@ -161,18 +161,16 @@
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Faculty:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            <option>Engineering</option>
-                            <option>Robotics</option>
-                            <option>SoAD</option>
+                        <select id="faculty" name="faculty" class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+                            <option value="" selected disabled>Select Faculty</option>
+                            @foreach($facLists as $facList)
+                            <option value="{{ $facList->FacultyID }}">{{ $facList->FacultyName }}</option>
+                            @endforeach
                         </select>
                     </label>
                     <label class="block mb-2">
                         <span class="text-gray-700">Department:</span>
-                        <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="DepartmentID" id="DepartmentID">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        <select id="department" name="department" class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
                         </select>
                     </label>
                     <div class='flex justify-center w-full pt-6'>
@@ -182,4 +180,31 @@
                     </div>
             </div>
     </form>
+    <script type="text/javascript">
+        $('#faculty').change(function(){ 
+            var facID = $(this).val();  
+            if(facID) {
+                $.ajax({
+                    type:"GET",
+                    url:"{{ route('getDepartment') }}?FacultyID="+facID,
+                    success:function(res) {
+                        if(res) {
+                            $("#department").empty();
+                            $("#department").append('<option>Select Department</option>');
+                            $.each(res,function(key,value) {
+                                $("#department").append('<option value="'+key+'">'+value+'</option>');
+                            });
+                        }
+                        else {
+                            $("#department").empty();
+                        }
+                    }
+                });
+            }
+            else {
+                $("#department").empty();
+                $("#ProgramID").empty();
+            }   
+        });
+    </script>
 @endsection
