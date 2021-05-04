@@ -15,6 +15,26 @@
                     <strong>{{ $message }}</strong><br>
                 </span>
             @enderror
+            @error('FirstName')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('LastName')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('BirthDate')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Gender')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
             @error('CitizenID')
                 <span class="text-red-600 text-sm" role="alert">
                     <strong>{{ $message }}</strong><br>
@@ -26,6 +46,26 @@
                 </span>
             @enderror
             @error('Personal_email')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Degree')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('ProgramID')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('Room')
+                <span class="text-red-600 text-sm" role="alert">
+                    <strong>{{ $message }}</strong><br>
+                </span>
+            @enderror
+            @error('DateStarted')
                 <span class="text-red-600 text-sm" role="alert">
                     <strong>{{ $message }}</strong><br>
                 </span>
