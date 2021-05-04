@@ -8,7 +8,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <p class="text-4xl text-darkblue2 mr-12">Welcome, {{ Auth::user()->FirstName }}</p>
+                <p class="text-4xl text-darkblue2 mr-20">Welcome,<br>{{ Auth::user()->FirstName }}</p>
                 <div class="text-gray-800">
                     <p>Name: </p>
                     <p>Program: </p>
@@ -17,11 +17,12 @@
                 </div>
                 <div class="ml-5 text-gray-500">
                     <p>{{ Auth::user()->FirstName }} {{ Auth::user()->LastName }}</p>
-                    <p>International Program</p>
-                    <p>Computer Engineering</p>
-                    <p>Engineering</p>
+                    <p>{{ $inProgram->pgName }}</p>
+                    <p>{{ $inDepartment->depName }}</p>
+                    <p>{{ $inFaculty->facName }}</p>
                 </div>
                 <div class="ml-10 text-gray-800">
+                    <p>Gender: </p>
                     <p>Email: </p>
                     <p>Personal Email: </p>
                     <p>Advisor: </p>
@@ -30,6 +31,13 @@
                     @endfor
                 </div>
                 <div class="ml-5 text-gray-500">
+                    @if(Auth::user()->Gender == "M")
+                        <p>Male</p>
+                    @elseif(Auth::user()->Gender == "F")
+                        <p>Female</p>
+                    @else
+                        <p>Other</p>
+                    @endif
                     <p>{{ Auth::user()->Email }}</p>
                     <p>{{ Auth::user()->Personal_email }}</p>
                     @if($advisorCount == 0)
@@ -58,7 +66,7 @@
                     <tbody>
                         <tr>
                             <td class="border border-gray-400" rowspan="2">MON</td>
-                            <!-- if($loop->first) -->
+                            <!-- foreach if(loop->first) -->
                             <td class="border border-gray-400">Man and Ethics of Living</td>
                             <td class="border border-gray-400">33</td>
                             <td class="border border-gray-400">08.30 - 10.30</td>

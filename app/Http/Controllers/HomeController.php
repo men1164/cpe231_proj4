@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Advisor;
 use App\Models\Teacher;
+use App\Models\Program;
+use App\Models\Department;
+use App\Models\Faculty;
 
 class HomeController extends Controller
 {
@@ -28,6 +31,7 @@ class HomeController extends Controller
     public function index()
     {
         $stdID = Auth::id();
+        $programID = Auth::user()->ProgramID;
 
         $advisorLists = Advisor::with('teacher')
                         ->whereHas('teacher', function($q) use($stdID) {
@@ -35,9 +39,25 @@ class HomeController extends Controller
                         })->get();
         
         $advisorCount = $advisorLists->count();
+
+        $inProgram = Program::select('ProgramID', 'ProgramName as pgName', 'DepartmentID')
+                            ->where('ProgramID', '=', $programID)
+                            ->first();
         
+        $inDepartment = Department::select('DepartmentID', 'DepartmentName as depName', 'FacultyID')
+                        ->where('DepartmentID', '=', $inProgram->DepartmentID)
+                        ->first();
+
+        $inFaculty = Faculty::select('FacultyID', 'facInfo.FacultyName as facName')
+                        ->where('FacultyID', '=', $inDepartment->FacultyID)
+                        ->first();
+
         return view('std.home', [
             'advisorLists' => $advisorLists,
-            'advisorCount' => $advisorCount]);
+            'advisorCount' => $advisorCount,
+            'inProgram' => $inProgram,
+            'inDepartment' => $inDepartment,
+            'inFaculty' => $inFaculty 
+            ]);
     }
 }
