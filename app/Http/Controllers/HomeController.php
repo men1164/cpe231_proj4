@@ -85,32 +85,29 @@ class HomeController extends Controller
             'Personal_email' => 'required|email',
         ]);
 
-        if(User::where('id', '=', $stdID)
-            ->update([
-                'FirstName' => $request->FirstName,
-                'LastName' => $request->LastName,
-                'Gender' => $request->Gender,
-                'Email' => $request->Email,
-                'Personal_email' => $request->Personal_email
-            ]))
-        {
-            if(!empty($request->input['password']))
+        $user = User::where('id', '=', $stdID)->first();
+        $user->update([
+            'FirstName' => $request->FirstName,
+            'LastName' => $request->LastName,
+            'Gender' => $request->Gender,
+            'Email' => $request->Email,
+            'Personal_email' => $request->Personal_email, 
+            ]);
+
+            if(!empty($request->password))
             {
                 $this->validate($request, [
                     'password' => 'required|min:4|confirmed',
                 ]);
-                
-                User::where('id', '=', $stdID)
-                    ->update([
-                        'password' => Hash::make($request->password)
-                    ]);
 
+                $user->password = Hash::make($request->password);
+                $user->save();
+            
                 return redirect()->back()->with('updatedWithPW', 'Your new information and password was updated!');
             }
             else
             {
                 return redirect()->back()->with('updated', 'Your new information was updated!');
             }
-        }
     }
 }

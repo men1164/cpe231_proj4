@@ -36,11 +36,11 @@
                         <strong>{{ $message }}</strong><br>
                     </span>
                 @enderror
-                <div class="mt-8">
+                <div class="mt-5">
                     @if(session('updatedWithPW'))
-                        <p class="text-green-500 text-sm text-center mt-3">{{ session('updatedWithPW') }}</p>
+                        <p class="text-green-500 text-sm text-center mb-3">{{ session('updatedWithPW') }}</p>
                     @elseif(session('updated'))
-                        <p class="text-green-500 text-sm text-center mt-3">{{ session('updated') }}</p>
+                        <p class="text-green-500 text-sm text-center mb-3">{{ session('updated') }}</p>
                     @endif
                         <label class="block mb-2">
                             <span class="text-gray-700">Full Name:</span>
