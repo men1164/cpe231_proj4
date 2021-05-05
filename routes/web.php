@@ -41,6 +41,9 @@ Route::get('/pay', function() {
     return view('std.payStd');
 });
 
+Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profileDetail']);
+Route::post('/profile', [App\Http\Controllers\HomeController::class, 'profileUpdate'])->name('std.updateProfile');
+
 /************** Professor (Teacher) Role **************/
 Route::prefix('tch')->group(function ()
 {

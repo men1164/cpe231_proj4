@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Advisor;
 use App\Models\Teacher;
@@ -59,5 +60,57 @@ class HomeController extends Controller
             'inDepartment' => $inDepartment,
             'inFaculty' => $inFaculty 
             ]);
+    }
+
+    public function profileDetail()
+    {
+        $stdID = Auth::id();
+
+        $profile = User::where('id', '=', $stdID)->first();
+
+        return view('std.profileStd', [
+            'profile' => $profile
+        ]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $stdID = Auth::id();
+
+        $this->validate($request, [
+            'FirstName' => 'required|string',
+            'LastName' => 'required|string',
+            'Gender' => 'required',
+            'Email' => 'required|email',
+            'Personal_email' => 'required|email',
+        ]);
+
+        if(User::where('id', '=', $stdID)
+            ->update([
+                'FirstName' => $request->FirstName,
+                'LastName' => $request->LastName,
+                'Gender' => $request->Gender,
+                'Email' => $request->Email,
+                'Personal_email' => $request->Personal_email
+            ]))
+        {
+            if(!empty($request->input['password']))
+            {
+                $this->validate($request, [
+                    'password' => 'required|min:4|confirmed',
+                ]);
+                
+                User::where('id', '=', $stdID)
+                    ->update([
+                        'password' => Hash::make($request->password)
+                    ]);
+
+                return redirect()->back()->with('updatedWithPW', 'Your new information and password was updated!');
+            }
+            else
+            {
+                return redirect()->back()->with('updated', 'Your new information was updated!');
+            }
+        }
     }
 }
