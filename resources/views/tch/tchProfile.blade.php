@@ -1,8 +1,8 @@
-@extends('layouts.SBstd')
+@extends('layouts.SBtch')
 
 @section('content')
-    <div class="flex justify-center items-center ml-60 h-full bg-gray-200 p-8">
-        <form class="w-1/3" method="POST" action="{{ route('std.updateProfile') }}">
+    <div class="flex justify-center items-center ml-60 h-auto bg-gray-200 p-8">
+        <form class="w-1/3" method="POST" action="{{ route('tch.updateProfile') }}">
             @csrf
             <h2 class="text-2xl font-bold text-center text-kmutt-or">Edit Profile</h2>
                 <!-- Error Log -->
@@ -32,6 +32,16 @@
                     </span>
                 @enderror
                 @error('Personal_email')
+                    <span class="text-red-600 text-sm" role="alert">
+                        <strong>{{ $message }}</strong><br>
+                    </span>
+                @enderror
+                @error('Grad_from')
+                    <span class="text-red-600 text-sm" role="alert">
+                        <strong>{{ $message }}</strong><br>
+                    </span>
+                @enderror
+                @error('Grad_degree')
                     <span class="text-red-600 text-sm" role="alert">
                         <strong>{{ $message }}</strong><br>
                     </span>
@@ -115,6 +125,26 @@
                             value="{{ $profile->Personal_email }}"
                             required
                             />
+                        </label>
+                        <label class="block mb-4">
+                            <span class="text-gray-700">Graduated From:</span>
+                            <input
+                            type="text"
+                            class="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
+                            placeholder="sample@gmail.com"
+                            id="Grad_from"
+                            name="Grad_from"
+                            value="{{ $profile->Grad_from }}"
+                            required
+                            />
+                        </label>
+                        <label class="block mb-2">
+                            <span class="text-gray-700">Degree Graduated:</span>
+                            <select class="block w-full mt-1 rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" name="Grad_degree" id="Grad_degree">
+                                <option value="Bachelor">Bachelor</option>
+                                <option value="Master">Master</option>
+                                <option value="Doctor">Doctor</option>
+                            </select>
                         </label>
                         <div class='flex justify-center w-full pt-6'>
                             <button type="submit" class="w-1/2 focus:outline-none text-white text-sm rounded-full py-3 px-6 bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">

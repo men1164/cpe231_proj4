@@ -88,7 +88,7 @@
                     <span class="flex font-medium text-sm text-gray-400 px-4 my-4 uppercase">Account</span>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('tch.profile') }}"
                     class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
                         <span class="flex items-center justify-center text-lg text-darkblue2">
                             <svg fill="none"
