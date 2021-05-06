@@ -75,4 +75,7 @@ Route::prefix('admin')->group(function ()
     Route::get('/advisor', [App\Http\Controllers\AdminController::class, 'adviseManager'])->name('admin.advise');
     Route::post('/advisor/removed', [App\Http\Controllers\AdminController::class, 'adviseDelete'])->name('admin.removeAdvise');
     Route::post('/advisor/added', [App\Http\Controllers\AdminController::class, 'adviseAdd'])->name('admin.addAdvise');
+
+    Route::get('/profile', [App\Http\Controllers\AdminController::class, 'profileDetail'])->name('admin.profile');
+    Route::post('/profile', [App\Http\Controllers\AdminController::class, 'profileUpdate'])->name('admin.updateProfile');
 });

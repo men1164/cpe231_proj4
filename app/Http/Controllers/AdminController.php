@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Advisor;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -80,5 +82,48 @@ class AdminController extends Controller
         {
             return view('ad.adminAdvisor')->withErrors('StudentID or Teacher ID does not match the records.');
         }
+    }
+
+    public function profileDetail()
+    {
+        $adminID = Auth::id();
+
+        $profile = Admin::where('id', '=', $adminID)->first();
+
+        return view('ad.adminProfile', [
+            'profile' => $profile
+        ]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $adminID = Auth::id();
+
+        $this->validate($request, [
+            'FirstName' => 'required|string',
+            'LastName' => 'required|string',
+        ]);
+
+        $user = Admin::where('id', '=', $adminID)->first();
+        $user->update([
+            'FirstName' => $request->FirstName,
+            'LastName' => $request->LastName,
+            ]);
+
+            if(!empty($request->password))
+            {
+                $this->validate($request, [
+                    'password' => 'required|min:4|confirmed',
+                ]);
+
+                $user->password = Hash::make($request->password);
+                $user->save();
+            
+                return redirect()->back()->with('updatedWithPW', 'Your new information and password was updated!');
+            }
+            else
+            {
+                return redirect()->back()->with('updated', 'Your new information was updated!');
+            }
     }
 }
