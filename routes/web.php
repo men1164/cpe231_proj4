@@ -31,6 +31,7 @@ Route::get('/registration', function () {
     return view('std.regisStd');
 });
 Route::post('/registration', [App\Http\Controllers\HomeController::class, 'searchClass'])->name('searchClass');
+Route::post('/registration/registered', [App\Http\Controllers\HomeController::class, 'registerClass'])->name('registered');
 
 Route::get('/withdraw', function() {
     return view('std.wdStd');

@@ -82,37 +82,46 @@
                 <div class="flex-grow overflow-auto">
                     @isset($results)
                         @if($resultCount != 0)
-                            <table class="relative w-full border rounded-3xl">
-                                <thead>
-                                    <tr>
-                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Code</th>
-                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Name</th>
-                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Section</th>
-                                        <th class="sticky top-0 px-6 py-3 text-green-400 bg-white">Register</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-300 bg-gray-100">
-                                    @foreach($results as $result)
-                                    <tr>
-                                        <td class="px-6 py-4 text-center">{{ $result->ClassCode }}</td>
-                                        <td class="px-6 py-4 text-center">{{ $className->ClassName }}</td>
-                                        <td class="px-6 py-4 text-center">{{ $result->SectionNo }}</td>
-                                        <td class="flex items-center justify-center px-6 py-4 text-center">
-                                            <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
-                                                <span class="flex items-center justify-center text-white">
-                                                    <svg class="h-6 w-6"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                                    </svg>  
-                                                </span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <form action="{{ route('registered') }}" method="post">
+                                @csrf
+                                <table class="relative w-full border rounded-3xl">
+                                    <thead>
+                                        <tr>
+                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Code</th>
+                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Name</th>
+                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Section</th>
+                                            <th class="sticky top-0 px-6 py-3 text-green-400 bg-white">Register</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-300 bg-gray-100">
+                                        @foreach($results as $result)
+                                        <tr>
+                                            <td class="px-6 py-4 text-center">
+                                                {{ $result->ClassCode }}
+                                                <input type="hidden" name="ClassCode" id="ClassCode" value="{{ $result->ClassCode }}">
+                                            </td>
+                                            <td class="px-6 py-4 text-center">{{ $className->ClassName }}</td>
+                                            <td class="px-6 py-4 text-center">
+                                                {{ $result->SectionNo }}
+                                                <input type="hidden" name="SectionNo" id="ClassCode" value="{{ $result->SectionNo }}">
+                                            </td>
+                                            <td class="flex items-center justify-center px-6 py-4 text-center">
+                                                <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-green-400 hover:bg-green-500 hover:shadow-lg">
+                                                    <span class="flex items-center justify-center text-white">
+                                                        <svg class="h-6 w-6"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                        </svg>  
+                                                    </span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </form>
                         @else
                             <p class="mt-2 text-base text-kmutt-or">Class Code doesn't match any records.</p>
                         @endif

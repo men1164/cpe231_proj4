@@ -115,6 +115,7 @@ class HomeController extends Controller
         }
     }
 
+    /** Search a class to register **/
     public function searchClass(Request $request)
     {
         $results = ClassSection::where('ClassCode', '=', $request->ClassCode)
@@ -131,5 +132,10 @@ class HomeController extends Controller
             'resultCount' => $resultCount,
             'className' => $getClassName
         ]);
+    }
+
+    public function registerClass(Request $request)
+    {
+        
     }
 }
