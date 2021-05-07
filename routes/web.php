@@ -18,16 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/************** Student Role **************/
-Auth::routes();
+/************** For student registration dynamic dropdown **************/
 Route::get('/register/getDepartment', [App\Http\Controllers\Auth\RegisterController::class, 'getDepartment'])->name('getDepartment');
 Route::get('/register/getProgram', [App\Http\Controllers\Auth\RegisterController::class, 'getProgram'])->name('getProgram');
+
+/** Routes for authentication for student role **/
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/registration', function () {
     return view('std.regisStd');
 });
+Route::post('/registration', [App\Http\Controllers\HomeController::class, 'searchClass'])->name('searchClass');
 
 Route::get('/withdraw', function() {
     return view('std.wdStd');

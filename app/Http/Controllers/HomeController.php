@@ -11,6 +11,8 @@ use App\Models\Teacher;
 use App\Models\Program;
 use App\Models\Department;
 use App\Models\Faculty;
+use App\Models\ClassSection;
+use App\Models\ClassInfo;
 
 class HomeController extends Controller
 {
@@ -62,6 +64,7 @@ class HomeController extends Controller
             ]);
     }
 
+    /** Give a current user's information in edit profile page **/
     public function profileDetail()
     {
         $stdID = Auth::id();
@@ -73,6 +76,7 @@ class HomeController extends Controller
         ]);
     }
 
+    /** Perform an update **/
     public function profileUpdate(Request $request)
     {
         $stdID = Auth::id();
@@ -92,22 +96,40 @@ class HomeController extends Controller
             'Gender' => $request->Gender,
             'Email' => $request->Email,
             'Personal_email' => $request->Personal_email, 
+        ]);
+
+        if(!empty($request->password))
+        {
+            $this->validate($request, [
+                'password' => 'required|min:4|confirmed',
             ]);
 
-            if(!empty($request->password))
-            {
-                $this->validate($request, [
-                    'password' => 'required|min:4|confirmed',
-                ]);
+            $user->password = Hash::make($request->password);
+            $user->save();
+        
+            return redirect()->back()->with('updatedWithPW', 'Your new information and password was updated!');
+        }
+        else
+        {
+            return redirect()->back()->with('updated', 'Your new information was updated!');
+        }
+    }
 
-                $user->password = Hash::make($request->password);
-                $user->save();
-            
-                return redirect()->back()->with('updatedWithPW', 'Your new information and password was updated!');
-            }
-            else
-            {
-                return redirect()->back()->with('updated', 'Your new information was updated!');
-            }
+    public function searchClass(Request $request)
+    {
+        $results = ClassSection::where('ClassCode', '=', $request->ClassCode)
+                    ->get();
+
+        $getClassName = ClassInfo::where('ClassCode', '=', $request->ClassCode)
+                        ->select('ClassName')
+                        ->first();
+
+        $resultCount = $results->count();
+
+        return view('std.regisStd', [
+            'results' => $results,
+            'resultCount' => $resultCount,
+            'className' => $getClassName
+        ]);
     }
 }
