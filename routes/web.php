@@ -63,6 +63,7 @@ Route::prefix('tch')->group(function ()
 
     Route::get('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'showRegisterForm'])->name('teacher.register');
     Route::post('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'register'])->name('teacher.register.submit');
+    Route::get('/register/getDepartment', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'getDepartment'])->name('getDepartmentTch');
 
     Route::get('/profile', [App\Http\Controllers\TeacherController::class, 'profileDetail'])->name('tch.profile');
     Route::post('/profile', [App\Http\Controllers\TeacherController::class, 'profileUpdate'])->name('tch.updateProfile');

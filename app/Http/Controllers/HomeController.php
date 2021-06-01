@@ -136,6 +136,8 @@ class HomeController extends Controller
 
     public function registerClass(Request $request)
     {
+        $stdID = Auth::id();
+
         
     }
 }

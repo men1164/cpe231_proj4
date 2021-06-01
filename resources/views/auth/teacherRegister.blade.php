@@ -1,7 +1,7 @@
 @extends('layouts.regisTheme')
 
 @section('content')
-    <form method="POST" action="{{ route('teacher.register.submit') }}">
+    <form method="post" action="{{ route('teacher.register.submit') }}">
         @csrf
             <h2 class="text-2xl font-bold text-center text-kmutt-or">Register (Complex Form #2)</h2>
             <p class="text-base text-center text-kmutt-or">Professor (Teacher) Role</p>
@@ -32,13 +32,14 @@
                     <strong>{{ $message }}</strong><br>
                 </span>
             @enderror
-            <div class="grid grid-cols-1 gap-2 mt-8">
-                    <!-- Status message -->
-                    @if(session('success'))
+            
+            <!-- Status message -->
+            @if(session('success'))
                         <p class="text-green-500 text-sm text-center mt-3">{{ session('success') }}</p>
                     @elseif(session('failed'))
                         <p class="text-red-600 text-sm text-center mt-3">{{ session('failed') }}</p>
                     @endif
+            <div class="grid grid-cols-1 gap-2 mt-8">
                     <label class="block mb-7">
                         <input
                         type="text"
@@ -186,7 +187,7 @@
             if(facID) {
                 $.ajax({
                     type:"GET",
-                    url:"{{ route('getDepartment') }}?FacultyID="+facID,
+                    url:"{{ route('getDepartmentTch') }}?FacultyID="+facID,
                     success:function(res) {
                         if(res) {
                             $("#department").empty();
@@ -203,7 +204,6 @@
             }
             else {
                 $("#department").empty();
-                $("#ProgramID").empty();
             }   
         });
     </script>

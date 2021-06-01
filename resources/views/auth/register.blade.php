@@ -315,6 +315,6 @@
                 $("#ProgramID").empty();
             }  
         });
-        </script>
+    </script>
 
 @endsection

@@ -48,7 +48,7 @@ class TeacherRegisterController extends Controller
             'Personal_email' => 'required|email',
             'Grad_from' => 'required|string',
             'Grad_degree' => 'required',
-            'DepartmentID' => 'required',
+            'department' => 'required',
         ]);
 
         if(Teacher::create([
@@ -63,7 +63,7 @@ class TeacherRegisterController extends Controller
             'Personal_email' => $request->Personal_email,
             'Grad_from' => $request->Grad_from,
             'Grad_degree' => $request->Grad_degree,
-            'DepartmentID' => $request->DepartmentID,
+            'DepartmentID' => $request->department,
             ]))
         {
             return redirect()->back()->with('success', 'Succesfully Registered');
