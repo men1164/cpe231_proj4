@@ -31,9 +31,7 @@ Route::get('/registration', [App\Http\Controllers\HomeController::class, 'showCu
 Route::post('/registration', [App\Http\Controllers\HomeController::class, 'searchClass'])->name('searchClass');
 Route::post('/registration/registered', [App\Http\Controllers\HomeController::class, 'registerClass'])->name('registered');
 
-Route::get('/withdraw', function() {
-    return view('std.wdStd');
-});
+Route::get('/withdraw', [App\Http\Controllers\HomeController::class, 'showCurrentRegisWD'])->name('withdraw');
 
 Route::get('/gpax', function() {
     return view('std.gradeStd');

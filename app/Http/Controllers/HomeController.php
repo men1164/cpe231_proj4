@@ -117,6 +117,7 @@ class HomeController extends Controller
         }
     }
 
+    /** Show the current registration list of the student **/
     public function showCurrentRegis()
     {
         $stdID = Auth::id();
@@ -195,12 +196,14 @@ class HomeController extends Controller
         }
     }
 
+    /** Perform a register query **/
     public function registerClass(Request $request)
     {
         $stdID = Auth::id();
 
         $hasRegistered = Register::where('std_id', '=', $stdID)->first();
 
+        /* IF NEVER REGISTER */
         if($hasRegistered == NULL)
         {
             Register::insert([
@@ -254,6 +257,38 @@ class HomeController extends Controller
                 'currentRegis' => $currentRegis,
                 'regisID' => $regisID->RegisterID,
                 'regisCount' => $regisCount
+            ]);
+        }
+    }
+
+    /** Show current registration for display in withdraw page **/
+    public function showCurrentRegisWD()
+    {
+        $stdID = Auth::id();
+
+        $regisID = Register::where('std_id', '=', $stdID) 
+                            ->first();
+
+        if($regisID == NULL)
+        {
+            $regisCount = 0;
+
+            return view('std.wdStd',[
+                'regisCount' => $regisCount
+            ]);
+        }
+        else
+        {
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'RegisterID')
+                            ->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.wdStd',[
+                'regisCount' => $regisCount,
+                'currentRegis' => $currentRegis
             ]);
         }
     }
