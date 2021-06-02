@@ -8,8 +8,6 @@
             @isset($lists)
             <div class="flex flex-col ml-14 mr-14 mt-5 h-2/3 w-auto">
                 <div class="flex-grow overflow-auto">
-                    <form action="{{ route('admin.removeAdvise') }}" method="POST">
-                    @csrf
                     <table class="relative w-full border rounded-3xl">
                         <thead>
                             <tr>
@@ -22,34 +20,36 @@
                         </thead>
                         <tbody class="divide-y divide-gray-300 bg-gray-100">
                             @foreach($lists as $list)
-                            <tr>
-                                <td class="px-6 py-4 text-center">
-                                    {{ $list->st_id }}
-                                    <input type="hidden" name="stdID" id="stdID" value="{{ $list->st_id }}">
-                                </td>
-                                <td class="px-6 py-4 text-center">{{ $list->st_FirstName }}</td>
-                                <td class="px-6 py-4 text-center">
-                                    {{ $list->tch_id }}
-                                    <input type="hidden" name="tchID" id="tchID" value="{{ $list->tch_id }}">    
-                                </td>
-                                <td class="px-6 py-4 text-center">{{ $list->tch_FirstName }}</td>
-                                <td class="flex items-center justify-center px-6 py-4 text-center">
-                                    <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">
-                                        <span class="flex items-center justify-center text-white">
-                                            <svg class="h-5 w-5" 
-                                                fill="none" 
-                                                viewBox="0 0 24 24" 
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </td>
-                            </tr>
+                            <form action="{{ route('admin.removeAdvise') }}" method="POST">
+                                @csrf
+                                <tr>
+                                    <td class="px-6 py-4 text-center">
+                                        {{ $list->st_id }}
+                                        <input type="hidden" name="stdID" id="stdID" value="{{ $list->st_id }}">
+                                    </td>
+                                    <td class="px-6 py-4 text-center">{{ $list->st_FirstName }}</td>
+                                    <td class="px-6 py-4 text-center">
+                                        {{ $list->tch_id }}
+                                        <input type="hidden" name="tchID" id="tchID" value="{{ $list->tch_id }}">    
+                                    </td>
+                                    <td class="px-6 py-4 text-center">{{ $list->tch_FirstName }}</td>
+                                    <td class="flex items-center justify-center px-6 py-4 text-center">
+                                        <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">
+                                            <span class="flex items-center justify-center text-white">
+                                                <svg class="h-5 w-5" 
+                                                    fill="none" 
+                                                    viewBox="0 0 24 24" 
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
                             @endforeach
                         </tbody>
                     </table>
-                    </form>
                 </div>
             </div>
             @endisset

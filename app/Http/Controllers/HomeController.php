@@ -281,7 +281,44 @@ class HomeController extends Controller
         {
             $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
                             ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'RegisterID')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'registerDetail.RegisterID as RegisterID')
+                            ->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.wdStd',[
+                'regisCount' => $regisCount,
+                'currentRegis' => $currentRegis
+            ]);
+        }
+    }
+
+    public function withdraw2(Request $request)
+    {
+        $stdID = Auth::id();
+
+        RegisterDetail::where([
+            ['RegisterID', '=', $request->RegisterID],
+            ['ClassCode', '=', $request->ClassCode],
+            ['SectionNo', '=', $request->SectionNo]
+        ])->delete();
+
+        $regisID = Register::where('std_id', '=', $stdID) 
+                            ->first();
+
+        if($regisID == NULL)
+        {
+            $regisCount = 0;
+
+            return view('std.wdStd',[
+                'regisCount' => $regisCount
+            ]);
+        }
+        else
+        {
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'registerDetail.RegisterID as RegisterID')
                             ->get();
 
             $regisCount = $currentRegis->count();
