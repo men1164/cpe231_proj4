@@ -32,7 +32,7 @@ Route::post('/registration', [App\Http\Controllers\HomeController::class, 'searc
 Route::post('/registration/registered', [App\Http\Controllers\HomeController::class, 'registerClass'])->name('registered');
 
 Route::get('/withdraw', [App\Http\Controllers\HomeController::class, 'showCurrentRegisWD'])->name('withdraw');
-Route::post('/withdraw', [App\Http\Controllers\HomeController::class, 'withdraw2'])->name('withdrawed');
+Route::post('/withdraw', [App\Http\Controllers\HomeController::class, 'withdraw'])->name('withdrawed');
 
 Route::get('/gpax', function() {
     return view('std.gradeStd');

@@ -293,7 +293,7 @@ class HomeController extends Controller
         }
     }
 
-    public function withdraw2(Request $request)
+    public function withdraw(Request $request)
     {
         $stdID = Auth::id();
 
