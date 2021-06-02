@@ -134,7 +134,10 @@ class HomeController extends Controller
         }
         else
         {
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                            ->get();
 
             $regisCount = $currentRegis->count();
 
@@ -175,7 +178,10 @@ class HomeController extends Controller
         }
         else
         {
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                            ->get();
 
             $regisCount = $currentRegis->count();
 
@@ -213,7 +219,10 @@ class HomeController extends Controller
                 'ClassCode' => $request->ClassCode
             ]);
 
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                            ->get();
 
             $regisCount = $currentRegis->count();
 
@@ -234,7 +243,10 @@ class HomeController extends Controller
                 'ClassCode' => $request->ClassCode
             ]);
 
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                            ->get();
 
             $regisCount = $currentRegis->count();
 
