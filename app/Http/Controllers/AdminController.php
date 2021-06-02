@@ -31,6 +31,11 @@ class AdminController extends Controller
         return view('ad.adminHome');
     }
 
+    public function regisIndex()
+    {
+        return view('ad.adminRegisManage');
+    }
+
     public function adviseManager()
     {
         $allLists = Advisor::join('users', 'advisor.std_id', '=', 'users.id')

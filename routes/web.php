@@ -74,6 +74,8 @@ Route::prefix('admin')->group(function ()
     Route::post('/login', [App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('admin.login.submit');
     Route::get('/home', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.home');
 
+    Route::get('/registermanager', [App\Http\Controllers\AdminController::class, 'regisIndex'])->name('admin.regisManage');
+
     Route::get('/advisor', [App\Http\Controllers\AdminController::class, 'adviseManager'])->name('admin.advise');
     Route::post('/advisor/removed', [App\Http\Controllers\AdminController::class, 'adviseDelete'])->name('admin.removeAdvise');
     Route::post('/advisor/added', [App\Http\Controllers\AdminController::class, 'adviseAdd'])->name('admin.addAdvise');
