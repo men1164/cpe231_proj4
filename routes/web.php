@@ -27,9 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/registration', function () {
-    return view('std.regisStd');
-});
+Route::get('/registration', [App\Http\Controllers\HomeController::class, 'showCurrentRegis'])->name('registration');
 Route::post('/registration', [App\Http\Controllers\HomeController::class, 'searchClass'])->name('searchClass');
 Route::post('/registration/registered', [App\Http\Controllers\HomeController::class, 'registerClass'])->name('registered');
 

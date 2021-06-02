@@ -13,6 +13,8 @@ use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\ClassSection;
 use App\Models\ClassInfo;
+use App\Models\Register;
+use App\Models\RegisterDetail;
 
 class HomeController extends Controller
 {
@@ -76,7 +78,7 @@ class HomeController extends Controller
         ]);
     }
 
-    /** Perform an update **/
+    /** Perform an update profile **/
     public function profileUpdate(Request $request)
     {
         $stdID = Auth::id();
@@ -115,9 +117,39 @@ class HomeController extends Controller
         }
     }
 
+    public function showCurrentRegis()
+    {
+        $stdID = Auth::id();
+
+        $regisID = Register::where('std_id', '=', $stdID) 
+                            ->first();
+
+        if($regisID == NULL)
+        {
+            $regisCount = 0;
+
+            return view('std.regisStd',[
+                'regisCount' => $regisCount
+            ]);
+        }
+        else
+        {
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.regisStd',[
+                'regisCount' => $regisCount,
+                'currentRegis' => $currentRegis
+            ]);
+        }
+    }
+
     /** Search a class to register **/
     public function searchClass(Request $request)
     {
+        $stdID = Auth::id();
+
         $results = ClassSection::where('ClassCode', '=', $request->ClassCode)
                     ->get();
 
@@ -127,17 +159,90 @@ class HomeController extends Controller
 
         $resultCount = $results->count();
 
-        return view('std.regisStd', [
-            'results' => $results,
-            'resultCount' => $resultCount,
-            'className' => $getClassName
-        ]);
+        $regisID = Register::where('std_id', '=', $stdID) 
+                            ->first();
+
+        if($regisID == NULL)
+        {
+            $regisCount = 0;
+
+            return view('std.regisStd',[
+                'regisCount' => $regisCount,
+                'results' => $results,
+                'resultCount' => $resultCount,
+                'className' => $getClassName
+            ]);
+        }
+        else
+        {
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.regisStd',[
+                'regisCount' => $regisCount,
+                'currentRegis' => $currentRegis,
+                'results' => $results,
+                'resultCount' => $resultCount,
+                'className' => $getClassName
+            ]);
+        }
     }
 
     public function registerClass(Request $request)
     {
         $stdID = Auth::id();
 
-        
+        $hasRegistered = Register::where('std_id', '=', $stdID)->first();
+
+        if($hasRegistered == NULL)
+        {
+            Register::insert([
+                'std_id' => $stdID,
+                'semester' => 2,
+                'year' => 2563,
+                'PayStatus' => 0
+            ]);
+            
+            $regisID = Register::where('std_id', '=', $stdID) 
+                        ->first();
+
+            RegisterDetail::insert([
+                'RegisterID' => $regisID->RegisterID,
+                'SectionNo' => $request->SectionNo,
+                'ClassCode' => $request->ClassCode
+            ]);
+
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.regisStd', [
+                'currentRegis' => $currentRegis,
+                'regisID' => $regisID->RegisterID,
+                'regisCount' => $regisCount
+            ]);
+        }
+        else
+        {
+            $regisID = Register::where('std_id', '=', $stdID) 
+                        ->first();
+
+            RegisterDetail::insert([
+                'RegisterID' => $regisID->RegisterID,
+                'SectionNo' => $request->SectionNo,
+                'ClassCode' => $request->ClassCode
+            ]);
+
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.regisStd', [
+                'currentRegis' => $currentRegis,
+                'regisID' => $regisID->RegisterID,
+                'regisCount' => $regisCount
+            ]);
+        }
     }
 }
