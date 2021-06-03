@@ -32,6 +32,11 @@ class TeacherController extends Controller
         return view('tch.tchHome');
     }
 
+    public function responseClassIndex()
+    {
+        return view('tch.tchCourse');
+    }
+
     /** Show advise lists **/
     public function showAdviseList()
     {

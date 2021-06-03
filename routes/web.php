@@ -52,6 +52,8 @@ Route::prefix('tch')->group(function ()
     Route::post('/login', [App\Http\Controllers\Auth\TeacherLoginController::class, 'login'])->name('teacher.login.submit');
     Route::get('/home', [App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.home');
 
+    Route::get('/class', [App\Http\Controllers\TeacherController::class, 'responseClassIndex'])->name('teacher.classIndex');
+
     Route::get('/advisor', [App\Http\Controllers\TeacherController::class, 'showAdviseList'])->name('teacher.advise');
     
     Route::post('/advisor', [App\Http\Controllers\TeacherController::class, 'showStdList'])->name('showStd');
