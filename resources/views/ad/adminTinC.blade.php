@@ -102,7 +102,7 @@
                         <input
                         type="text"
                         class="w-40 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        placeholder="6xxxxxxxx"
+                        placeholder="1xxxxxxxx"
                         name="tchID"
                         id="tchID"
                         />
@@ -112,7 +112,7 @@
                         <input
                         type="text"
                         class="w-40 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        placeholder="1xxxxxxxx"
+                        placeholder="XXXxxx"
                         name="ClassCode"
                         id="ClassCode"
                         />
@@ -122,7 +122,7 @@
                         <input
                         type="text"
                         class="w-40 h-10 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                        placeholder="1xxxxxxxx"
+                        placeholder="xx"
                         name="SectionNo"
                         id="SectionNo"
                         />
