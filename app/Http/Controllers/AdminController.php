@@ -8,6 +8,8 @@ use App\Models\Advisor;
 use App\Models\Admin;
 use App\Models\Register;
 use App\Models\RegisterDetail;
+use App\Models\Teacher;
+use App\Models\TeacherInClass;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -152,6 +154,45 @@ class AdminController extends Controller
         else
         {
             return view('ad.adminAdvisor')->withErrors('StudentID or Teacher ID does not match the records.');
+        }
+    }
+
+    public function searchTch(Request $request)
+    {
+        $results = TeacherInClass::where('tchID', '=', $request->tchID)
+                    ->join('tchUser', 'TeacherInClass.tchID', '=', 'tchUser.id')
+                    ->join('classinfo', 'TeacherInClass.ClassCode', '=','classinfo.ClassCode')
+                    ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode as ClassCode', 'TeacherInClass.SectionNo as SectionNo', 'tchUser.id as tchID')
+                    ->get();
+
+        if($results->count() == 0)
+        {
+            return view('ad.adminTinC')->with('tchID', $request->tchID)->with('notfound', 'Input ID does not match in the records or may not teaching in any class');
+        }
+        else
+        {
+            return view('ad.adminTinC', [
+                'results' => $results,
+                'tchID' => $request->tchID
+            ]);
+        }
+    }
+
+    public function addToClass(Request $request)
+    {
+        if(TeacherInClass::insert([
+            'SectionNo' => $request->SectionNo,
+            'ClassCode' => $request->ClassCode,
+            'tchID' => $request->tchID
+        ]))
+        {
+            return view('ad.adminTinC', [
+                'success' => 'Added '.$request->tchID.' to class '.$request->ClassCode.' complete.'
+            ]);
+        }
+        else
+        {
+            return redirect()->back()->with('failed', 'The input data not found');
         }
     }
 
