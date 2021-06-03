@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Advisor;
 use App\Models\Teacher;
 use App\Models\TeacherInClass;
+use App\Models\RegisterDetail;
 
 class TeacherController extends Controller
 {
@@ -46,6 +47,26 @@ class TeacherController extends Controller
             'results' => $results
         ]);
     }
+
+    public function seeStdLists(Request $request)
+    {
+        $stdLists = RegisterDetail::where([
+            ['ClassCode', '=', $request->ClassCode],
+            ['SectionNo', '=', $request->SectionNo]
+        ])->join('register', 'registerDetail.RegisterID', '=', 'register.RegisterID')
+        ->join('users', 'register.std_id', '=', 'users.id')
+        ->join('programInfo', 'users.ProgramID', '=', 'programInfo.ProgramID')
+        ->join('depInfo', 'programInfo.DepartmentID', '=', 'depInfo.DepartmentID')
+        ->select('users.id as stdID', 'users.FirstName as FirstName', 'programInfo.ProgramName as ProgramName', 'depInfo.DepartmentName as DepartmentName')
+        ->get();
+
+        return view('tch.tchCstdList', [
+            'lists' => $stdLists,
+            'ClassCode' => $request->ClassCode,
+            'SectionNo' => $request->SectionNo
+        ]);
+    }
+
 
     /** Show advise lists **/
     public function showAdviseList()
