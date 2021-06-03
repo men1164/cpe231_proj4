@@ -212,53 +212,29 @@ class HomeController extends Controller
                 'year' => 2563,
                 'PayStatus' => 0
             ]);
-            
-            $regisID = Register::where('std_id', '=', $stdID) 
-                        ->first();
-
-            RegisterDetail::insert([
-                'RegisterID' => $regisID->RegisterID,
-                'SectionNo' => $request->SectionNo,
-                'ClassCode' => $request->ClassCode
-            ]);
-
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
-                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
-                            ->get();
-
-            $regisCount = $currentRegis->count();
-
-            return view('std.regisStd', [
-                'currentRegis' => $currentRegis,
-                'regisID' => $regisID->RegisterID,
-                'regisCount' => $regisCount
-            ]);
         }
-        else
-        {
-            $regisID = Register::where('std_id', '=', $stdID) 
-                        ->first();
+        
+        $regisID = Register::where('std_id', '=', $stdID) 
+                    ->first();
 
-            RegisterDetail::insert([
-                'RegisterID' => $regisID->RegisterID,
-                'SectionNo' => $request->SectionNo,
-                'ClassCode' => $request->ClassCode
-            ]);
+        RegisterDetail::insert([
+            'RegisterID' => $regisID->RegisterID,
+            'SectionNo' => $request->SectionNo,
+            'ClassCode' => $request->ClassCode
+        ]);
 
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
-                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
-                            ->get();
+        $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                        ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                        ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                        ->get();
 
-            $regisCount = $currentRegis->count();
+        $regisCount = $currentRegis->count();
 
-            return view('std.regisStd', [
-                'currentRegis' => $currentRegis,
-                'regisID' => $regisID->RegisterID,
-                'regisCount' => $regisCount
-            ]);
-        }
+        return view('std.regisStd', [
+            'currentRegis' => $currentRegis,
+            'regisID' => $regisID->RegisterID,
+            'regisCount' => $regisCount
+        ]);
     }
 
     /** Show current registration for display in withdraw page **/
