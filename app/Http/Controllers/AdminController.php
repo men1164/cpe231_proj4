@@ -187,12 +187,39 @@ class AdminController extends Controller
         ]))
         {
             return view('ad.adminTinC', [
-                'success' => 'Added '.$request->tchID.' to class '.$request->ClassCode.' complete.'
+                'success' => 'Added '.$request->tchID.' to class '.$request->ClassCode.' section '.$request->SectionNo.' complete.'
             ]);
         }
         else
         {
             return redirect()->back()->with('failed', 'The input data not found');
+        }
+    }
+
+    public function removeFromClass(Request $request)
+    {
+        TeacherInClass::where([
+            ['SectionNo', '=', $request->SectionNo],
+            ['ClassCode', '=', $request->ClassCode],
+            ['tchID', '=', $request->tchID]
+        ])->delete();
+
+        $results = TeacherInClass::where('tchID', '=', $request->tchID)
+                    ->join('tchUser', 'TeacherInClass.tchID', '=', 'tchUser.id')
+                    ->join('classinfo', 'TeacherInClass.ClassCode', '=','classinfo.ClassCode')
+                    ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode as ClassCode', 'TeacherInClass.SectionNo as SectionNo', 'tchUser.id as tchID')
+                    ->get();
+
+        if($results->count() == 0)
+        {
+            return view('ad.adminTinC')->with('tchID', $request->tchID)->with('notfound', 'Input ID does not match in the records or may not teaching in any class');
+        }
+        else
+        {
+            return view('ad.adminTinC', [
+                'results' => $results,
+                'tchID' => $request->tchID
+            ]);
         }
     }
 

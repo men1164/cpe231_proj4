@@ -58,13 +58,18 @@
                         </thead>
                         <tbody class="divide-y divide-gray-300 bg-gray-100">
                             @foreach($results as $result)
+                            <form action="{{ route('admin.removeFromClass') }}" method="post">
+                                @csrf
                                 <tr>
                                     <td class="px-6 py-4 text-center">
                                         {{ $result->ClassCode }}
+                                        <input type="hidden" name="ClassCode" id="ClassCode" value="{{ $result->ClassCode }}">
                                     </td>
                                     <td class="px-6 py-4 text-center">{{ $result->ClassName }}</td>
                                     <td class="px-6 py-4 text-center">
                                         {{ $result->SectionNo }}
+                                        <input type="hidden" name="SectionNo" id="SectionNo" value="{{ $result->SectionNo }}">
+                                        <input type="hidden" name="tchID" id="tchID" value="{{ $tchID }}">
                                     </td>
                                     <td class="flex items-center justify-center px-6 py-4 text-center">
                                         <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">
@@ -79,6 +84,7 @@
                                         </button>
                                     </td>
                                 </tr>
+                            </form>
                             @endforeach
                         </tbody>
                     </table>
