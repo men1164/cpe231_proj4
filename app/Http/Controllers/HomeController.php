@@ -306,27 +306,68 @@ class HomeController extends Controller
         $regisID = Register::where('std_id', '=', $stdID) 
                             ->first();
 
-        if($regisID == NULL)
-        {
-            $regisCount = 0;
+        $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                        ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                        ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'registerDetail.RegisterID as RegisterID')
+                        ->get();
 
-            return view('std.wdStd',[
-                'regisCount' => $regisCount
+        $regisCount = $currentRegis->count();
+            
+        if($regisCount == 0)
+        {
+            Register::where('std_id', '=', $stdID)->delete();
+        }
+
+        return view('std.wdStd',[
+            'regisCount' => $regisCount,
+            'currentRegis' => $currentRegis
+        ]);
+    }
+
+    public function paymentIndex()
+    {
+        $stdID = Auth::id();
+
+        $regis = Register::where('std_id', '=', $stdID)->first();
+
+        if($regis == NULL)
+        {
+            return view('std.payStd', [
+                'notregis' => 'You have not registered any class yet.'
             ]);
         }
         else
-        {
-            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
-                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                            ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'registerDetail.RegisterID as RegisterID')
-                            ->get();
+        {   
+            if($regis->PayStatus == 1)
+            {
+                return view('std.payStd', [
+                    'paid' => 'You have already paid for this semester.'
+                ]);
+            }
+            else
+            {
+                $tuition = User::where('id', '=', $stdID)
+                        ->join('programInfo', 'users.ProgramID', '=', 'programInfo.ProgramID')
+                        ->select('programInfo.TuitionFee as fee')
+                        ->first();
 
-            $regisCount = $currentRegis->count();
+                return view('std.payStd', [
+                    'fee' => $tuition->fee
+                ]);
+            }
 
-            return view('std.wdStd',[
-                'regisCount' => $regisCount,
-                'currentRegis' => $currentRegis
-            ]);
         }
+    }
+
+    public function paidUpdate()
+    {
+        $stdID = Auth::id();
+
+        Register::where('std_id', '=', $stdID)
+                ->update(['PayStatus' => 1]);
+
+        return view('std.payStd', [
+            'paid' => 'You have already paid for this semester.'
+        ]);
     }
 }

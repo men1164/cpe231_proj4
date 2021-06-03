@@ -38,9 +38,8 @@ Route::get('/gpax', function() {
     return view('std.gradeStd');
 });
 
-Route::get('/pay', function() {
-    return view('std.payStd');
-});
+Route::get('/pay', [App\Http\Controllers\HomeController::class, 'paymentIndex'])->name('paymentIndex');
+Route::post('/pay', [App\Http\Controllers\HomeController::class, 'paidUpdate'])->name('paid');
 
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profileDetail']);
 Route::post('/profile', [App\Http\Controllers\HomeController::class, 'profileUpdate'])->name('std.updateProfile');
