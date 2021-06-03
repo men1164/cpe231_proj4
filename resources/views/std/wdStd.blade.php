@@ -4,7 +4,7 @@
     <div class="flex justify-center items-center ml-60 h-full bg-gray-200 p-8">
         <div class="w-5/6 h-5/6 bg-white rounded-xl shadow-xl">
             <p class="ml-12 mt-12 text-5xl font-semibold text-red-500">Withdraw</p>
-            <p class="ml-12 mt-2 text-lg text-black">Select class to withdraw</p>
+            <p class="ml-14 mt-2 text-lg text-black">Select class to withdraw</p>
             @if($regisCount == 0)
                 <p class="ml-12 mt-2 text-lg text-kmutt-or">You have not register for this semester yet.</p>
             @else

@@ -38,6 +38,7 @@ class AdminController extends Controller
         return view('ad.adminRegisManage');
     }
 
+    /** Search student ID to manage thier registerd class **/
     public function searchStd(Request $request)
     {
         $regis = Register::where('std_id', '=', $request->search)->first();
@@ -62,11 +63,13 @@ class AdminController extends Controller
         }
     }
 
+    /** Remove class from thier registered **/
     public function removedRegis(Request $request)
     {
 
     }
 
+    /** Index function for advise manager page **/
     public function adviseManager()
     {
         $allLists = Advisor::join('users', 'advisor.std_id', '=', 'users.id')
@@ -79,6 +82,7 @@ class AdminController extends Controller
         ]);
     }
 
+    /** Perform a delete advise **/
     public function adviseDelete(Request $request)
     {
         if(Advisor::where([
@@ -98,6 +102,7 @@ class AdminController extends Controller
         }
     }
 
+    /** Perform adding advise list **/
     public function adviseAdd(Request $request)
     {
         if(Advisor::insert([
@@ -120,6 +125,7 @@ class AdminController extends Controller
         }
     }
 
+    /** Index function for profile editing page **/
     public function profileDetail()
     {
         $adminID = Auth::id();
@@ -131,6 +137,7 @@ class AdminController extends Controller
         ]);
     }
 
+    /** Perform an update profile **/
     public function profileUpdate(Request $request)
     {
         $adminID = Auth::id();

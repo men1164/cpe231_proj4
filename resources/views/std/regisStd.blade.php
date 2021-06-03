@@ -34,7 +34,7 @@
         <div class="row-start-2 row-end-3 bg-white rounded-xl shadow-lg">
             <form action="{{ route('searchClass') }}" method="post">
                 @csrf
-                <div class="flex flex-row items-center ml-12 mt-12">
+                <div class="flex flex-row items-center ml-12 mt-10">
                     <p class="text-lg font-semibold text-kmutt-or">Search the class to register: </p>
                     <label class="ml-5">
                         <input
