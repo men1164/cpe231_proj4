@@ -6,7 +6,7 @@
             <p class="ml-12 mt-12 text-5xl font-semibold text-red-500">Withdraw</p>
             <p class="ml-14 mt-2 text-lg text-black">Select class to withdraw</p>
             @if($regisCount == 0)
-                <p class="ml-12 mt-2 text-lg text-kmutt-or">You have not register for this semester yet.</p>
+                <p class="ml-14 mt-2 text-lg text-kmutt-or">You have not register for this semester yet.</p>
             @else
                 <div class="flex flex-col ml-14 mr-14 mt-5 h-3/5 w-auto">
                     <div class="flex-grow overflow-auto">

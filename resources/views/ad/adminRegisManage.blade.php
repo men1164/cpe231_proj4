@@ -7,7 +7,7 @@
             <form action="{{ route('admin.searchStd') }}" method="post">
                 @csrf
                 <div class="flex flex-row items-center ml-12 mt-5">
-                    <p class="text-lg text-red-400">Search StudentID :</p>
+                    <p class="text-lg text-red-400">Input StudentID :</p>
                     <label class="ml-3">
                         @if(empty($std_id))
                             <input
@@ -42,6 +42,9 @@
             @if(session('notfound'))
                 <p class="ml-12 mt-5 text-red-600 text-sm">{{ session('notfound') }}</p>
             @endif
+            @if(!empty($nomore))
+                <p class="ml-12 mt-5 text-red-600 text-sm">{{ $nomore }}</p>
+            @endif
             @isset($results)
                 <div class="flex flex-col ml-14 mr-14 mt-5 h-3/5 w-auto">
                     <div class="flex-grow overflow-auto">
@@ -57,7 +60,7 @@
                             <tbody class="divide-y divide-gray-300 bg-gray-100">
                                 @foreach($results as $result)
                                 <tr>
-                                    <form action="#" method="POST">
+                                    <form action="{{ route('admin.removeRegis') }}" method="POST">
                                         @csrf
                                         <td class="px-6 py-4 text-center">
                                             {{ $result->ClassCode }}
@@ -68,7 +71,7 @@
                                             {{ $result->SectionNo }}
                                             <input type="hidden" name="SectionNo" id="SectionNo" value="{{ $result->SectionNo }}"> 
                                             <input type="hidden" name="RegisterID" id="RegisterID" value="{{ $result->RegisterID }}">   
-                                            <input type="hidden" name="stdID" id="stdID" value="{{ $std_id }}">   
+                                            <input type="hidden" name="stdID" id="stdID" value="{{ $std_id }}">
                                         </td>
                                         <td class="flex items-center justify-center px-6 py-4 text-center">
                                             <button type="submit" class="w-6 h-6 focus:outline-none rounded-full bg-red-500 hover:bg-red-600 hover:shadow-lg">

@@ -53,7 +53,7 @@ class AdminController extends Controller
 
             $results = RegisterDetail::where('RegisterID', '=', $regis->RegisterID)
                         ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                        ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode')
+                        ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'RegisterID')
                         ->get();
 
             return view('ad.adminRegisManage', [
@@ -66,6 +66,31 @@ class AdminController extends Controller
     /** Remove class from thier registered **/
     public function removedRegis(Request $request)
     {
+        RegisterDetail::where([
+            ['RegisterID', '=', $request->RegisterID],
+            ['ClassCode', '=', $request->ClassCode],
+            ['SectionNo', '=', $request->SectionNo]
+        ])->delete();
+
+        /** remaining class **/
+        $results = RegisterDetail::where('RegisterID', '=', $request->RegisterID)
+                    ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                    ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'RegisterID')
+                    ->get();
+
+        if($results->count() == 0)
+        {
+            Register::where('RegisterID', '=', $request->RegisterID)->delete();
+
+            return view('ad.adminRegisManage')->with('std_id', $request->stdID)->with('nomore', 'No more class that '.$request->stdID.' has registered');
+        }
+        else
+        {
+            return view('ad.adminRegisManage', [
+                'results' => $results,
+                'std_id' => $request->stdID
+            ]);
+        }
 
     }
 
