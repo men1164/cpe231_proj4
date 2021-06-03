@@ -16,6 +16,7 @@
                         placeholder="1xxxxxxxx"
                         name="tchID"
                         id="tchID"
+                        required
                         />
                     </label>
                     @else
@@ -26,6 +27,7 @@
                         value="{{ $tchID }}"
                         name="tchID"
                         id="tchID"
+                        required
                         />
                     </label>
                     @endif
@@ -105,6 +107,7 @@
                         placeholder="1xxxxxxxx"
                         name="tchID"
                         id="tchID"
+                        required
                         />
                     </label>
                     <p class="text-lg font-semibold text-kmutt-or ml-5">ClassCode: </p>
@@ -115,6 +118,7 @@
                         placeholder="XXXxxx"
                         name="ClassCode"
                         id="ClassCode"
+                        required
                         />
                     </label>
                     <p class="text-lg font-semibold text-kmutt-or ml-5">SectionNo: </p>
@@ -125,6 +129,7 @@
                         placeholder="xx"
                         name="SectionNo"
                         id="SectionNo"
+                        required
                         />
                     </label>
                     <button type="submit" class="ml-5 w-16 h-10 focus:outline-none rounded-lg bg-green-400 hover:bg-green-500 hover:shadow-lg">

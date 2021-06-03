@@ -66,6 +66,7 @@
                         placeholder="6xxxxxxxx"
                         name="stdID"
                         id="stdID"
+                        required
                         />
                     </label>
                     <p class="text-lg font-semibold text-kmutt-or ml-5">Teacher ID: </p>
@@ -76,6 +77,7 @@
                         placeholder="1xxxxxxxx"
                         name="tchID"
                         id="tchID"
+                        required
                         />
                     </label>
                     <button type="submit" class="ml-5 w-16 h-10 focus:outline-none rounded-lg bg-green-400 hover:bg-green-500 hover:shadow-lg">

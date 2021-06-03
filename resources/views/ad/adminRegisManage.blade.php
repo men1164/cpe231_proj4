@@ -16,6 +16,7 @@
                             placeholder="6xxxxxxxxxx"
                             name="search"
                             id="search"
+                            required
                             />
                         @else
                             <input
@@ -24,6 +25,7 @@
                             value="{{ $std_id }}"
                             name="search"
                             id="search"
+                            required
                             />
                         @endif
                     </label>

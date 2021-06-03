@@ -60,6 +60,7 @@
                         placeholder="Firstname"
                         name="search"
                         id="search"
+                        required
                         />
                     </label>
                     <button type="submit" class="ml-2 w-16 h-10 focus:outline-none rounded-lg bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">
