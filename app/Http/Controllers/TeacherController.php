@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Advisor;
 use App\Models\Teacher;
+use App\Models\TeacherInClass;
 
 class TeacherController extends Controller
 {
@@ -34,7 +35,16 @@ class TeacherController extends Controller
 
     public function responseClassIndex()
     {
-        return view('tch.tchCourse');
+        $tchID = Auth::id();
+
+        $results = TeacherInClass::where('tchID', '=', $tchID)
+                    ->join('classinfo', 'TeacherInClass.ClassCode', '=', 'classinfo.ClassCode')
+                    ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode', 'SectionNo')
+                    ->get();
+
+        return view('tch.tchCourse', [
+            'results' => $results
+        ]);
     }
 
     /** Show advise lists **/
