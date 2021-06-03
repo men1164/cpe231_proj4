@@ -32,6 +32,19 @@
             @else
             <p class="ml-14 mt-3 text-md font-semibold text-red-500">No student has registered this class.</p>
             @endif
+            <a href="{{ url()->previous() }}">
+                <button class="ml-14 w-24 h-10 mt-8 focus:outline-none rounded-lg bg-kmutt-or hover:bg-kmutt-hover hover:shadow-lg">
+                    <span class="flex items-center justify-center text-white">
+                        <svg class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        <p class="ml-2">Back</p>
+                    </span>
+                </button>
+            </a>
         </div>
     </div>
 @endsection
