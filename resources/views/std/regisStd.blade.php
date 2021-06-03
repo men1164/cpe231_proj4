@@ -61,19 +61,19 @@
                 <div class="flex-grow overflow-auto">
                     @isset($results)
                         @if($resultCount != 0)
-                            <form action="{{ route('registered') }}" method="post">
-                                @csrf
-                                <table class="relative w-full border rounded-3xl">
-                                    <thead>
-                                        <tr>
-                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Code</th>
-                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Name</th>
-                                            <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Section</th>
-                                            <th class="sticky top-0 px-6 py-3 text-green-400 bg-white">Register</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-300 bg-gray-100">
-                                        @foreach($results as $result)
+                            <table class="relative w-full border rounded-3xl">
+                                <thead>
+                                    <tr>
+                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Code</th>
+                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Class Name</th>
+                                        <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Section</th>
+                                        <th class="sticky top-0 px-6 py-3 text-green-400 bg-white">Register</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-300 bg-gray-100">
+                                    @foreach($results as $result)
+                                    <form action="{{ route('registered') }}" method="post">
+                                        @csrf
                                         <tr>
                                             <td class="px-6 py-4 text-center">
                                                 {{ $result->ClassCode }}
@@ -97,10 +97,10 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </form>
+                                    </form>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         @else
                             <p class="mt-2 text-base text-kmutt-or">Class Code doesn't match any records.</p>
                         @endif
