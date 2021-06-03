@@ -94,6 +94,11 @@ class AdminController extends Controller
 
     }
 
+    public function coursetchIndex()
+    {
+        return view('ad.adminTinC');
+    }
+
     /** Index function for advise manager page **/
     public function adviseManager()
     {
