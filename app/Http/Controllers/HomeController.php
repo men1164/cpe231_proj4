@@ -319,7 +319,7 @@ class HomeController extends Controller
         {
             $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
                             ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
-                            ->select('classinfo.ClassName as ClassName', 'Grade', 'registerDetail.ClassCode as ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'classinfo.Credit as Credit', 'Grade', 'registerDetail.ClassCode as ClassCode')
                             ->get();
 
             $regisCount = $currentRegis->count();

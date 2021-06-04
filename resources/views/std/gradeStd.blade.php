@@ -16,6 +16,7 @@
                             <tr>
                                 <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">ClassCode</th>
                                 <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">ClassName</th>
+                                <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Credit</th>
                                 <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Grade</th>
                             </tr>
                         </thead>
@@ -24,6 +25,7 @@
                             <tr>
                                 <td class="px-6 py-4 text-center">{{ $list->ClassCode }}</td>
                                 <td class="px-6 py-4 text-center">{{ $list->ClassName }}</td>
+                                <td class="px-6 py-4 text-center">{{ $list->Credit }}</td>
                                 @if($list->Grade == NULL)
                                     <td class="px-6 py-4 text-center">-</td>
                                 @else
