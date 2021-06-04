@@ -317,16 +317,40 @@ class HomeController extends Controller
         }
         else
         {
+            $mssg = NULL;
+            $CxG = 0;
+            $TotalCredit = 0;
+            $GPAX = 0;
+
             $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
                             ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
                             ->select('classinfo.ClassName as ClassName', 'classinfo.Credit as Credit', 'Grade', 'registerDetail.ClassCode as ClassCode')
                             ->get();
 
+            foreach($currentRegis as $list)
+            {
+                if($list->Grade == NULL)
+                {
+                    $mssg = "[All classes must be graded.]";
+                    break;
+                }
+
+                $TotalCredit = $TotalCredit + $list->Credit;
+                $CxG = $CxG + ($list->Grade * $list->Credit);
+            }
+
+            if($TotalCredit != 0 && $CxG != 0)
+            {
+                $GPAX = number_format($CxG/$TotalCredit, 2);
+            }
+
             $regisCount = $currentRegis->count();
 
             return view('std.gradeStd',[
                 'regisCount' => $regisCount,
-                'currentRegis' => $currentRegis
+                'currentRegis' => $currentRegis,
+                'mssg' => $mssg,
+                'GPAX' => $GPAX
             ]);
         }
     }
