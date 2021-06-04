@@ -300,6 +300,37 @@ class HomeController extends Controller
         ]);
     }
 
+    public function viewGradeIndex()
+    {
+        $stdID = Auth::id();
+
+        $regisID = Register::where('std_id', '=', $stdID) 
+                            ->first();
+
+        if($regisID == NULL)
+        {
+            $regisCount = 0;
+
+            return view('std.gradeStd',[
+                'regisCount' => $regisCount
+            ]);
+        }
+        else
+        {
+            $currentRegis = RegisterDetail::where('RegisterID', '=', $regisID->RegisterID)
+                            ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                            ->select('classinfo.ClassName as ClassName', 'Grade', 'registerDetail.ClassCode as ClassCode')
+                            ->get();
+
+            $regisCount = $currentRegis->count();
+
+            return view('std.gradeStd',[
+                'regisCount' => $regisCount,
+                'currentRegis' => $currentRegis
+            ]);
+        }
+    }
+
     public function paymentIndex()
     {
         $stdID = Auth::id();

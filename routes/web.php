@@ -34,9 +34,7 @@ Route::post('/registration/registered', [App\Http\Controllers\HomeController::cl
 Route::get('/withdraw', [App\Http\Controllers\HomeController::class, 'showCurrentRegisWD'])->name('withdraw');
 Route::post('/withdraw', [App\Http\Controllers\HomeController::class, 'withdraw'])->name('withdrawed');
 
-Route::get('/gpax', function() {
-    return view('std.gradeStd');
-});
+Route::get('/gpax', [App\Http\Controllers\HomeController::class, 'viewGradeIndex'])->name('viewGrade');
 
 Route::get('/pay', [App\Http\Controllers\HomeController::class, 'paymentIndex'])->name('paymentIndex');
 Route::post('/pay', [App\Http\Controllers\HomeController::class, 'paidUpdate'])->name('paid');
