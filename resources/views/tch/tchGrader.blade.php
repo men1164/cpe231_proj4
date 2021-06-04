@@ -75,11 +75,13 @@
                                                 </span>
                                                 @endif
                                             </td>
-                                            <form action="#" method="post">
+                                            <form action="{{ route('teacher.gradeStd') }}" method="post">
+                                                @csrf
                                                 <td class="px-6 py-4 text-center flex flex-row items-center justify-center">
                                                     <input type="hidden" name="ClassCode" value="{{ $ClassCode }}">
                                                     <input type="hidden" name="SectionNo" value="{{ $SectionNo }}">
                                                     <input type="hidden" name="RegisterID" value="{{ $list->RegisterID }}">
+                                                    <input type="hidden" name="stdID" value="{{ $list->stdID }}">
                                                     <button type="submit">
                                                         <span class="flex items-center justify-center text-darkblue2">
                                                             <svg class="h-5 w-5" 

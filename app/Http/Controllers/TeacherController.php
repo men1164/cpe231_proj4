@@ -213,6 +213,16 @@ class TeacherController extends Controller
         ]);
     }
 
+    public function gradeStd(Request $request)
+    {
+        return view('tch.tchGradeStd', [
+            'RegisterID' => $request->RegisterID,
+            'ClassCode' => $request->ClassCode,
+            'SectionNo' => $request->SectionNo,
+            'stdID' => $request->stdID
+        ]);
+    }
+
     /** Show current profile detail **/
     public function profileDetail()
     {
