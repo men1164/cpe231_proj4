@@ -41,7 +41,9 @@ class TeacherController extends Controller
 
         $results = TeacherInClass::where('tchID', '=', $tchID)
                     ->join('classinfo', 'TeacherInClass.ClassCode', '=', 'classinfo.ClassCode')
-                    ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode', 'SectionNo')
+                    ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode as ClassCode', 'SectionNo')
+                    ->orderBy('ClassCode')
+                    ->orderBy('SectionNo')
                     ->get();
 
         return view('tch.tchCourse', [

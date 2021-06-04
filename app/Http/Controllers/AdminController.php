@@ -56,6 +56,8 @@ class AdminController extends Controller
             $results = RegisterDetail::where('RegisterID', '=', $regis->RegisterID)
                         ->join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
                         ->select('classinfo.ClassName as ClassName', 'SectionNo', 'registerDetail.ClassCode as ClassCode', 'RegisterID')
+                        ->orderBy('ClassCode')
+                        ->orderBy('SectionNo')
                         ->get();
 
             return view('ad.adminRegisManage', [
@@ -107,6 +109,7 @@ class AdminController extends Controller
         $allLists = Advisor::join('users', 'advisor.std_id', '=', 'users.id')
                             ->join('tchUser', 'advisor.tch_id', '=', 'tchUser.id')
                             ->select('users.id as st_id', 'users.FirstName as st_FirstName', 'tchUser.id as tch_id', 'tchUser.FirstName as tch_FirstName')
+                            ->orderBy('st_id')
                             ->get();
 
         return view('ad.adminAdvisor',[
