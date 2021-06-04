@@ -47,7 +47,7 @@
                 <p class="ml-12 mt-5 text-red-600 text-sm">{{ $notfound }}</p>
             @endif
             @isset($results)
-            <div class="flex flex-col ml-14 mr-14 mt-5 h-2/3 w-auto">
+            <div class="flex flex-col ml-14 mr-14 mt-5 h-1/2 w-auto">
                 <div class="flex-grow overflow-auto">
                     <table class="relative w-full border rounded-3xl">
                         <thead>

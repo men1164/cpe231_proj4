@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Advisor;
 use App\Models\Teacher;
@@ -87,7 +88,7 @@ class TeacherController extends Controller
                     ]);
     }
 
-    /** Show student lists search result **/
+    /** Show student lists search result for adding to advise **/
     public function showStdList(Request $request)
     {
         $tchID = Auth::id();
@@ -161,7 +162,55 @@ class TeacherController extends Controller
 
     public function graderIndex()
     {
-        return view('tch.tchGrader');
+        $tchID = Auth::id();
+
+        $results = DB::table('TeacherInClass')
+                    ->where('tchID', '=', $tchID)
+                    ->groupBy('ClassCode')
+                    ->get();
+
+        return view('tch.tchGrader', [
+            'results' => $results
+        ]);
+    }
+
+    public function getSectionNo(Request $request)
+    {
+        $tchID = Auth::id();
+
+        $section = TeacherInClass::where([
+            ['tchID', '=', $tchID],
+            ['ClassCode', '=', $request->ClassCode]
+            ])->pluck('SectionNo', 'SectionNo');
+
+        return response()->json($section);
+    }
+
+    public function stdListsGrader(Request $request)
+    {
+        $tchID = Auth::id();
+
+        $Cc = DB::table('TeacherInClass')
+                    ->where('tchID', '=', $tchID)
+                    ->groupBy('ClassCode')
+                    ->get();
+
+        $stdLists = RegisterDetail::where([
+            ['ClassCode', '=', $request->ClassCode],
+            ['SectionNo', '=', $request->SectionNo]
+        ])->join('register', 'registerDetail.RegisterID', '=', 'register.RegisterID')
+        ->join('users', 'register.std_id', '=', 'users.id')
+        ->join('programInfo', 'users.ProgramID', '=', 'programInfo.ProgramID')
+        ->join('depInfo', 'programInfo.DepartmentID', '=', 'depInfo.DepartmentID')
+        ->select('users.id as stdID', 'users.FirstName as FirstName', 'depInfo.DepartmentName as DepartmentName', 'register.RegisterID as RegisterID' , 'Grade')
+        ->get();
+
+        return view('tch.tchGrader', [
+            'lists' => $stdLists,
+            'ClassCode' => $request->ClassCode,
+            'SectionNo' => $request->SectionNo,
+            'results' => $Cc
+        ]);
     }
 
     /** Show current profile detail **/
