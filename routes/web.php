@@ -96,6 +96,9 @@ Route::prefix('admin')->group(function ()
     Route::get('/ClassAnalysis', [App\Http\Controllers\AdminController::class, 'classAnalysisIndex'])->name('admin.classAnalysis');
     Route::post('/ClassAnalysis', [App\Http\Controllers\AdminController::class, 'showClassAnalysis'])->name('admin.showClassAnalysis');
 
+    Route::get('/StdAnalysis', [App\Http\Controllers\AdminController::class, 'stdAnalysisIndex'])->name('admin.stdAnalysis');
+    Route::post('/StdAnalysis', [App\Http\Controllers\AdminController::class, 'showStdAnalysis'])->name('admin.showStdAnalysis');
+
     Route::get('/profile', [App\Http\Controllers\AdminController::class, 'profileDetail'])->name('admin.profile');
     Route::post('/profile', [App\Http\Controllers\AdminController::class, 'profileUpdate'])->name('admin.updateProfile');
 });

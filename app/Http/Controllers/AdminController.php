@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\Advisor;
+use App\Models\User;
+use App\Models\Faculty;
 use App\Models\Admin;
 use App\Models\Register;
 use App\Models\RegisterDetail;
@@ -263,6 +265,38 @@ class AdminController extends Controller
         return view('ad.adminClassAna', [
             'facLists' => $facLists,
             'classes' => $classes
+        ]);
+    }
+
+    public function stdAnalysisIndex()
+    {
+        $facLists = DB::table('facInfo')
+                        ->get();
+
+        return view('ad.adminStdAna', [
+            'facLists' => $facLists
+        ]);
+    }
+
+    public function showStdAnalysis(Request $request)
+    {
+        $stdLists = User::select('depInfo.DepartmentName as DepartmentName', 'programInfo.ProgramName as ProgramName', DB::raw('count(users.id) as totalStd'))
+                        ->rightJoin('programInfo', 'users.ProgramID', '=', 'programInfo.ProgramID')
+                        ->join('depInfo', 'programInfo.DepartmentID', '=', 'depInfo.DepartmentID')
+                        ->join('facInfo', 'depInfo.FacultyID', '=', 'facInfo.FacultyID')
+                        ->where('facInfo.FacultyID', '=', $request->faculty)
+                        ->groupBy('depInfo.DepartmentID', 'programInfo.ProgramID')
+                        ->get();
+
+        $facSelected = Faculty::where('FacultyID', '=', $request->faculty)->first();
+            
+        $facLists = DB::table('facInfo')
+                        ->get();
+
+        return view('ad.adminStdAna', [
+            'facLists' => $facLists,
+            'stdLists' => $stdLists,
+            'facSelected' => $facSelected->FacultyName
         ]);
     }
 
