@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Advisor;
 use App\Models\Admin;
 use App\Models\Register;
@@ -226,6 +227,43 @@ class AdminController extends Controller
                 'tchID' => $request->tchID
             ]);
         }
+    }
+
+    public function classAnalysisIndex()
+    {
+        $facLists = DB::table('facInfo')
+                        ->get();
+
+        return view('ad.adminClassAna', [
+            'facLists' => $facLists
+        ]);
+    }
+
+    public function showClassAnalysis(Request $request)
+    {
+        $classes = RegisterDetail::join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+                                ->where('classinfo.DepartmentID', '=', $request->department)
+                                ->select('registerDetail.ClassCode as ClassCode', 'classinfo.ClassName as ClassName', 'registerDetail.SectionNo as SectionNo', DB::raw('count(registerDetail.RegisterID) as totalStd'))
+                                ->groupBy('registerDetail.ClassCode', 'registerDetail.SectionNo')
+                                ->get();
+
+        // $classes = DB::table('classSec')
+        //             ->select('classSec.ClassCode as ClassCode', 'classinfo.ClassName as ClassName', 'classSec.SectionNo as SectionNo', DB::raw('count(registerDetail.RegisterID) as totalStd'))
+        //             ->where('classinfo.DepartmentID', '=', $request->department)
+        //             ->leftJoin('registerDetail', 'registerDetail.ClassCode', '=', 'classSec.ClassCode')
+        //             ->join('classinfo', 'classinfo.ClassCode', '=', 'classSec.ClassCode')
+        //             ->groupBy('classSec.ClassCode', 'classSec.SectionNo')
+        //             ->orderBy('classSec.ClassCode')
+        //             ->orderBy('classSec.SectionNo')
+        //             ->get();
+
+        $facLists = DB::table('facInfo')
+                        ->get();                                
+
+        return view('ad.adminClassAna', [
+            'facLists' => $facLists,
+            'classes' => $classes
+        ]);
     }
 
     /** Index function for profile editing page **/

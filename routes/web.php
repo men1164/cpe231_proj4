@@ -93,6 +93,9 @@ Route::prefix('admin')->group(function ()
     Route::post('/coursetch/added', [App\Http\Controllers\AdminController::class, 'addToClass'])->name('admin.addToClass');
     Route::post('/coursetch/removed', [App\Http\Controllers\AdminController::class,'removeFromClass'])->name('admin.removeFromClass');
 
+    Route::get('/ClassAnalysis', [App\Http\Controllers\AdminController::class, 'classAnalysisIndex'])->name('admin.classAnalysis');
+    Route::post('/ClassAnalysis', [App\Http\Controllers\AdminController::class, 'showClassAnalysis'])->name('admin.showClassAnalysis');
+
     Route::get('/profile', [App\Http\Controllers\AdminController::class, 'profileDetail'])->name('admin.profile');
     Route::post('/profile', [App\Http\Controllers\AdminController::class, 'profileUpdate'])->name('admin.updateProfile');
 });
