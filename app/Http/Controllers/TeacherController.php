@@ -159,6 +159,11 @@ class TeacherController extends Controller
         }
     }
 
+    public function graderIndex()
+    {
+        return view('tch.tchGrader');
+    }
+
     /** Show current profile detail **/
     public function profileDetail()
     {

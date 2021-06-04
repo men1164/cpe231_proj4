@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{ route('teacher.gradeIndex') }}"
                     class="flex flex-row items-center h-12 px-4 rounded-lg text-gray-500 hover:bg-gray-100">
                         <span class="flex items-center justify-center text-lg text-darkblue2">
                             <svg class="h-6 w-6" 
