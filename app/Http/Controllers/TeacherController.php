@@ -215,12 +215,79 @@ class TeacherController extends Controller
 
     public function gradeStd(Request $request)
     {
-        return view('tch.tchGradeStd', [
-            'RegisterID' => $request->RegisterID,
-            'ClassCode' => $request->ClassCode,
-            'SectionNo' => $request->SectionNo,
-            'stdID' => $request->stdID
-        ]);
+        $result = RegisterDetail::where([
+            ['ClassCode', '=', $request->ClassCode],
+            ['SectionNo', '=', $request->SectionNo],
+            ['RegisterID', '=', $request->RegisterID]
+        ])->first();
+
+        if($result->Grade == NULL)
+        {
+            return view('tch.tchGradeStd', [
+                'RegisterID' => $request->RegisterID,
+                'ClassCode' => $request->ClassCode,
+                'SectionNo' => $request->SectionNo,
+                'stdID' => $request->stdID
+            ]);
+        }
+        else
+        {
+            return view('tch.tchGradeStd', [
+                'RegisterID' => $request->RegisterID,
+                'ClassCode' => $request->ClassCode,
+                'SectionNo' => $request->SectionNo,
+                'stdID' => $request->stdID,
+                'grade' => $result->Grade,
+                'havegrade' => 'You have already graded this student. Select again to edit grade.'
+            ]);
+        }
+    }
+
+    public function grading(Request $request)
+    {
+        /** IF GRADED **/
+        if($request->Grade != "")
+        {
+            RegisterDetail::where([
+                ['ClassCode', '=', $request->ClassCode],
+                ['SectionNo', '=', $request->SectionNo],
+                ['RegisterID', '=', $request->RegisterID]
+            ])->update([
+                'Grade' => $request->Grade
+            ]);
+
+            $result = RegisterDetail::where([
+                ['ClassCode', '=', $request->ClassCode],
+                ['SectionNo', '=', $request->SectionNo],
+                ['RegisterID', '=', $request->RegisterID]
+            ])->first();
+    
+            return view('tch.tchGradeStd', [
+                'RegisterID' => $request->RegisterID,
+                'ClassCode' => $request->ClassCode,
+                'SectionNo' => $request->SectionNo,
+                'stdID' => $request->stdID,
+                'grade' => $result->Grade,
+                'havegrade' => 'You have already graded this student. Select again to edit grade.'
+            ]);
+        }
+        else
+        {
+            RegisterDetail::where([
+                ['ClassCode', '=', $request->ClassCode],
+                ['SectionNo', '=', $request->SectionNo],
+                ['RegisterID', '=', $request->RegisterID]
+            ])->update([
+                'Grade' => NULL
+            ]);
+
+            return view('tch.tchGradeStd', [
+                'RegisterID' => $request->RegisterID,
+                'ClassCode' => $request->ClassCode,
+                'SectionNo' => $request->SectionNo,
+                'stdID' => $request->stdID
+            ]);
+        }
     }
 
     /** Show current profile detail **/

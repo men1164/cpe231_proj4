@@ -64,6 +64,7 @@ Route::prefix('tch')->group(function ()
     Route::post('/grader/home', [App\Http\Controllers\TeacherController::class, 'stdListsGrader'])->name('teacher.stdListsGrader');
     Route::get('/grader/home/selectSec', [App\Http\Controllers\TeacherController::class, 'getSectionNo'])->name('getSectionTch');
     Route::post('/grader/gradeStd', [App\Http\Controllers\TeacherController::class, 'gradeStd'])->name('teacher.gradeStd');
+    Route::post('/grader/gradeStd/graded', [App\Http\Controllers\TeacherController::class, 'grading'])->name('teacher.grading');
 
     Route::get('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'showRegisterForm'])->name('teacher.register');
     Route::post('/register', [App\Http\Controllers\Auth\TeacherRegisterController::class, 'register'])->name('teacher.register.submit');
