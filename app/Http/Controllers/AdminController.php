@@ -166,6 +166,8 @@ class AdminController extends Controller
                     ->join('tchUser', 'TeacherInClass.tchID', '=', 'tchUser.id')
                     ->join('classinfo', 'TeacherInClass.ClassCode', '=','classinfo.ClassCode')
                     ->select('classinfo.ClassName as ClassName', 'TeacherInClass.ClassCode as ClassCode', 'TeacherInClass.SectionNo as SectionNo', 'tchUser.id as tchID')
+                    ->orderBy('ClassCode')
+                    ->orderBy('SectionNo')
                     ->get();
 
         if($results->count() == 0)
