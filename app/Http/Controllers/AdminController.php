@@ -320,9 +320,7 @@ class AdminController extends Controller
     }
 
     public function insertClass(Request $request)
-    {
-        
-        
+    {   
         ClassInfo::insert([
             'ClassCode' => $request->ClassCode,
             'ClassName' => $request->ClassName,
@@ -351,6 +349,11 @@ class AdminController extends Controller
             'facLists' => $facLists,
             'completed' => 'Insert '.$request->ClassCode.' Section '.$request->SectionNo.' to database Completed!'
         ]);
+    }
+
+    public function payIndex()
+    {
+        return view('ad.adminPayAna');
     }
 
     /** Index function for profile editing page **/

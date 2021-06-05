@@ -4,7 +4,7 @@
     <div class="flex justify-center items-center ml-60 h-full bg-gray-200 p-8">
         <div class="w-5/6 h-5/6 bg-white rounded-xl shadow-xl">
             <p class="ml-12 mt-12 text-5xl font-semibold text-darkblue2">Class Analysis</p>
-            <p class="ml-12 mt-3 text-lg text-kmutt-or">See how many students enrolled the course. [Every Sections]</p>
+            <p class="ml-12 mt-3 text-lg text-kmutt-or">See how many students enrolled each course. [Every Sections]</p>
             <div class="flex flex-row items-center ml-14 mt-3 w-full">
                 <form action="{{ route('admin.showClassAnalysis') }}" method="post">
                     @csrf
