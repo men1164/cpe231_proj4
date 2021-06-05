@@ -73,38 +73,6 @@
             @else
                 <p class="text-2xl text-center text-red-500">You have not enrolled any class.</p>
             @endif
-                <!-- <div class="text-center text-sm">
-                    <p class="font-semibold pb-2">DAY</p> 
-                    <p>MON</p>
-                    <p>TUE</p>
-                    <p>WED</p>
-                    <p>THU</p>
-                    <p>FRI</p>
-                </div>
-                <div class="text-center text-sm ml-20">
-                    <p class="font-semibold pb-2">SUBJECT</p> 
-                    <p>Man and Ethics of Living</p>
-                    <p>Statistic For Engineering</p>
-                    <p>Database System</p>
-                    <p>Computer Architecture</p>
-                    <p>Data Model</p>
-                </div>
-                <div class="text-center text-sm ml-20">
-                    <p class="font-semibold pb-2">SEC</p> 
-                    <p>33</p>
-                    <p>32</p>
-                    <p>31</p>
-                    <p>32</p>
-                    <p>33</p>
-                </div>
-                <div class="text-center text-sm ml-20">
-                    <p class="font-semibold pb-2">TIME</p> 
-                    <p>08.30 - 10.30</p>
-                    <p>13.30 - 16.00</p>
-                    <p>13.30 - 15.30</p>
-                    <p>13.30 - 17.30</p>
-                    <p>08.30 - 12.30</p>
-                </div> -->
             </div>
         </div>
 
