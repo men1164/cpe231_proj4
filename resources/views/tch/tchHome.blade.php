@@ -40,26 +40,30 @@
                 <p class="font-semibold text-6xl mt-6">{{ $totalClass }}</p>
             </div>
             <div class="flex justify-center items-center col-start-2 col-end-4 bg-white rounded-xl shadow-lg">
-                <table class="w-5/6 h-5/6 text-center" style="border-style: hidden;">
-                    <thead>
-                        <tr>
-                            <th class="border border-gray-400">ClassCode</th>
-                            <th class="border border-gray-400">Section</th>
-                            <th class="border border-gray-400">Day</th>
-                            <th class="border border-gray-400">TIME</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($timetable as $time)
-                        <tr>
-                            <td class="border border-gray-400">{{ $time->ClassCode }}</td>
-                            <td class="border border-gray-400">{{ $time->SectionNo }}</td>
-                            <td class="border border-gray-400">{{ $time->Day }}</td>
-                            <td class="border border-gray-400">{{\Carbon\Carbon::createFromFormat('H:i:s',$time->TS)->format('H:i') }} - {{\Carbon\Carbon::createFromFormat('H:i:s',$time->TE)->format('H:i') }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                @if($timetable->count() != 0)
+                    <table class="w-5/6 h-5/6 text-center" style="border-style: hidden;">
+                        <thead>
+                            <tr>
+                                <th class="border border-gray-400">ClassCode</th>
+                                <th class="border border-gray-400">Section</th>
+                                <th class="border border-gray-400">Day</th>
+                                <th class="border border-gray-400">TIME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($timetable as $time)
+                            <tr>
+                                <td class="border border-gray-400">{{ $time->ClassCode }}</td>
+                                <td class="border border-gray-400">{{ $time->SectionNo }}</td>
+                                <td class="border border-gray-400">{{ $time->Day }}</td>
+                                <td class="border border-gray-400">{{\Carbon\Carbon::createFromFormat('H:i:s',$time->TS)->format('H:i') }} - {{\Carbon\Carbon::createFromFormat('H:i:s',$time->TE)->format('H:i') }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <p class="text-2xl text-center text-red-500">You have not teaching in any class.</p>
+                @endif
                 <!-- <div class="text-center text-sm">
                     <p class="font-semibold pb-2">DAY</p> 
                     <p>MON</p>
