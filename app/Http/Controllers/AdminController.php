@@ -243,10 +243,16 @@ class AdminController extends Controller
 
     public function showClassAnalysis(Request $request)
     {
-        $classes = RegisterDetail::join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+        // $classes = RegisterDetail::join('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
+        //                         ->where('classinfo.DepartmentID', '=', $request->department)
+        //                         ->select('registerDetail.ClassCode as ClassCode', 'classinfo.ClassName as ClassName', 'registerDetail.SectionNo as SectionNo', DB::raw('count(registerDetail.RegisterID) as totalStd'))
+        //                         ->groupBy('registerDetail.ClassCode', 'registerDetail.SectionNo')
+        //                         ->get();
+
+        $classes = RegisterDetail::select('classinfo.ClassCode as ClassCode', 'classinfo.ClassName as ClassName', DB::raw('count(registerDetail.RegisterID) as totalStd'))
+                                ->rightJoin('classinfo', 'registerDetail.ClassCode', '=', 'classinfo.ClassCode')
                                 ->where('classinfo.DepartmentID', '=', $request->department)
-                                ->select('registerDetail.ClassCode as ClassCode', 'classinfo.ClassName as ClassName', 'registerDetail.SectionNo as SectionNo', DB::raw('count(registerDetail.RegisterID) as totalStd'))
-                                ->groupBy('registerDetail.ClassCode', 'registerDetail.SectionNo')
+                                ->groupBy('classinfo.ClassCode')
                                 ->get();
 
         // $classes = DB::table('classSec')

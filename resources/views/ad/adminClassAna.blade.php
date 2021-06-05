@@ -4,7 +4,7 @@
     <div class="flex justify-center items-center ml-60 h-full bg-gray-200 p-8">
         <div class="w-5/6 h-5/6 bg-white rounded-xl shadow-xl">
             <p class="ml-12 mt-12 text-5xl font-semibold text-darkblue2">Class Analysis</p>
-            <p class="ml-12 mt-3 text-lg text-kmutt-or">See how many students enrolled the course.</p>
+            <p class="ml-12 mt-3 text-lg text-kmutt-or">See how many students enrolled the course. [Every Sections]</p>
             <div class="flex flex-row items-center ml-14 mt-3 w-full">
                 <form action="{{ route('admin.showClassAnalysis') }}" method="post">
                     @csrf
@@ -37,7 +37,6 @@
                                 <tr>
                                     <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">ClassCode</th>
                                     <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">ClassName</th>
-                                    <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Section</th>
                                     <th class="sticky top-0 px-6 py-3 text-darkblue2 bg-white">Total Students</th>
                                 </tr>
                             </thead>
@@ -46,7 +45,6 @@
                                 <tr>
                                     <td class="px-6 py-4 text-center">{{ $class->ClassCode }}</td>
                                     <td class="px-6 py-4 text-center">{{ $class->ClassName }}</td>
-                                    <td class="px-6 py-4 text-center">{{ $class->SectionNo }}</td>
                                     <td class="px-6 py-4 text-center">{{ $class->totalStd }}</td>
                                 </tr>
                                 @endforeach
