@@ -49,7 +49,7 @@
                 <p class="font-semibold text-6xl mt-6">{{ $totalEnroll }}</p>
             </div>
             <div class="flex justify-center items-center col-start-2 col-end-4 bg-white rounded-xl shadow-lg">
-            @if(!empty($timetable))
+            @if($timetable->count() != 0)
                 <table class="w-5/6 h-5/6 text-center" style="border-style: hidden;">
                     <thead>
                         <tr>
