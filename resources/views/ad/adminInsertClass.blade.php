@@ -2,9 +2,12 @@
 
 @section('content')
     <div class="flex justify-center items-center ml-60 h-auto bg-gray-200 p-8">
-        <form class="w-1/3" method="POST" action="#">
+        <form class="w-1/3" method="POST" action="{{ route('admin.insertClass') }}">
             @csrf
             <h2 class="text-2xl font-bold text-center text-kmutt-or">Insert New Class</h2>
+            @isset($completed)
+                <p class="text-green-500 text-sm text-center mt-3">{{ $completed }}</p>
+            @endisset
                 <div class="mt-5">
                         <label class="block mb-2">
                             <span class="text-gray-700">Faculty:</span>
@@ -79,8 +82,8 @@
                             <input
                             type="time"
                             class="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                            id="Credit"
-                            name="Credit"
+                            id="TimeStart"
+                            name="TimeStart"
                             required
                             />
                         </label>
@@ -89,8 +92,8 @@
                             <input
                             type="time"
                             class="block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"
-                            id="Credit"
-                            name="Credit"
+                            id="TimeEnd"
+                            name="TimeEnd"
                             required
                             />
                         </label>

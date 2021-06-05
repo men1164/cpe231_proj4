@@ -13,6 +13,9 @@ use App\Models\Register;
 use App\Models\RegisterDetail;
 use App\Models\Teacher;
 use App\Models\TeacherInClass;
+use App\Models\Timetable;
+use App\Models\ClassInfo;
+use App\Models\ClassSection;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -313,6 +316,40 @@ class AdminController extends Controller
 
         return view('ad.adminInsertClass', [
             'facLists' => $facLists
+        ]);
+    }
+
+    public function insertClass(Request $request)
+    {
+        
+        
+        ClassInfo::insert([
+            'ClassCode' => $request->ClassCode,
+            'ClassName' => $request->ClassName,
+            'DepartmentID' => $request->department,
+            'Credit' => $request->Credit
+        ]);
+
+        ClassSection::insert([
+            'ClassCode' => $request->ClassCode,
+            'SectionNo' => $request->SectionNo
+        ]);
+
+        Timetable::insert([
+            'ClassCode' => $request->ClassCode,
+            'SectionNo' => $request->SectionNo,
+            'Day' => $request->Day,
+            'TimeStart' => $request->TimeStart,
+            'TimeEnd' => $request->TimeEnd
+        ]);
+
+        
+        $facLists = DB::table('facInfo')
+                        ->get();
+
+        return view('ad.adminInsertClass', [
+            'facLists' => $facLists,
+            'completed' => 'Insert '.$request->ClassCode.' Section '.$request->SectionNo.' to database Completed!'
         ]);
     }
 
