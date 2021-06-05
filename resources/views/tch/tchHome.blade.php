@@ -3,64 +3,61 @@
 @section('content')
         <div class="grid grid-cols-3 gap-9 ml-60 h-full bg-gray-200 p-8">
             <div class="flex justify-center items-center grid-cols-3 col-start-1 col-end-4 bg-white rounded-xl shadow-lg">
-                <p class="text-4xl text-darkblue2 font-bold">Welcome Teacher {{ Auth::user()->id }}</p>
+                <p class="text-4xl text-darkblue2 font-bold">Welcome, <br>{{ Auth::user()->FirstName }}</p>
+                <div class="ml-20 text-gray-800">
+                    <p>Name: </p>
+                    <p>Gender: </p>
+                    <p>Department: </p>
+                    <p>Faculty: </p>
+                </div>
+                <div class="ml-5 text-gray-500">
+                    <p>{{ Auth::user()->FirstName }} {{ Auth::user()->LastName }}</p>
+                    @if(Auth::user()->Gender == "M")
+                        <p>Male</p>
+                    @elseif(Auth::user()->Gender == "F")
+                        <p>Female</p>
+                    @else
+                        <p>Other</p>
+                    @endif
+                    <p>{{ $inDepartment->DepartmentName }}</p>
+                    <p>{{ $inDepartment->FacultyName }}</p>
+                </div>
+                <div class="ml-10 text-gray-800">
+                    <p>Email: </p>
+                    <p>Personal Email: </p>
+                    <p>Graduated From: </p>
+                    <p>Degree: </p>
+                </div>
+                <div class="ml-5 text-gray-500">
+                    <p>{{ Auth::user()->Email }}</p>
+                    <p>{{ Auth::user()->Personal_email }}</p>
+                    <p>{{ Auth::user()->Grad_from }}</p>
+                    <p>{{ Auth::user()->Grad_degree }}</p>
+                </div>
             </div>
-            <div class="flex flex-col col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg pl-9 pt-9 pb-0">
-                <p class="text-2xl">Current GPAX</p>
-                <p class="font-semibold text-6xl mt-6">0.00</p>
+            <div class="flex flex-col justify-center items-center col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg">
+                <p class="text-2xl text-center">Total Class <br> currently teaching</p>
+                <p class="font-semibold text-6xl mt-6">{{ $totalClass }}</p>
             </div>
             <div class="flex justify-center items-center col-start-2 col-end-4 bg-white rounded-xl shadow-lg">
                 <table class="w-5/6 h-5/6 text-center" style="border-style: hidden;">
                     <thead>
                         <tr>
-                            <th class="border border-gray-400">DAY</th>
-                            <th class="border border-gray-400">SUBJECT</th>
-                            <th class="border border-gray-400">SEC</th>
+                            <th class="border border-gray-400">ClassCode</th>
+                            <th class="border border-gray-400">Section</th>
+                            <th class="border border-gray-400">Day</th>
                             <th class="border border-gray-400">TIME</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($timetable as $time)
                         <tr>
-                            <td class="border border-gray-400" rowspan="2">MON</td>
-                            <!-- if($loop->first) -->
-                            <td class="border border-gray-400">Man and Ethics of Living</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">08.30 - 10.30</td>
+                            <td class="border border-gray-400">{{ $time->ClassCode }}</td>
+                            <td class="border border-gray-400">{{ $time->SectionNo }}</td>
+                            <td class="border border-gray-400">{{ $time->Day }}</td>
+                            <td class="border border-gray-400">{{ $time->TS }} - {{ $time->TE }}</td>
                         </tr>
-                        <tr>
-                            <td class="border border-gray-400">Database System</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">13.30 - 15.30</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-400" rowspan="1">TUE</td>
-                            <td class="border border-gray-400">Statistic for Engineering</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">13.30 - 16.30</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-400" rowspan="1">WED</td>
-                            <td class="border border-gray-400">Database System</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">15.30 - 17.30</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-400" rowspan="1">THU</td>
-                            <td class="border border-gray-400">Computer Architecture</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">13.30 - 17.30</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-400" rowspan="2">FRI</td>
-                            <td class="border border-gray-400">Data Model</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">08.30 - 12.30</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-gray-400">Integrated Social Science</td>
-                            <td class="border border-gray-400">33</td>
-                            <td class="border border-gray-400">13.30 - 16.30</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <!-- <div class="text-center text-sm">

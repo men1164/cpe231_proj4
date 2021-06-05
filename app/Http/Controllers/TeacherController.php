@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\Advisor;
 use App\Models\Teacher;
 use App\Models\TeacherInClass;
+use App\Models\Timetable;
 use App\Models\RegisterDetail;
 
 class TeacherController extends Controller
@@ -32,7 +34,33 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        return view('tch.tchHome');
+        $depID = Auth::user()->DepartmentID;
+        $tchID = Auth::id();
+
+        $inDepartment = Department::where('DepartmentID', '=', $depID)
+                        ->join('facInfo', 'depInfo.FacultyID', '=', 'facInfo.FacultyID')
+                        ->select('depInfo.DepartmentName as DepartmentName', 'facInfo.FacultyName as FacultyName')
+                        ->first();
+
+        $classes =  TeacherInClass::where('tchID', '=', $tchID)->count();
+
+        $time = TeacherInClass::rightJoin('timetable as t1', 'TeacherInClass.ClassCode', '=', 't1.ClassCode')
+                            ->where('TeacherInClass.tchID', '=', $tchID)
+                            ->get();
+
+        $time = TeacherInClass::join('timetable', function($join) {
+            $join->on('TeacherInClass.ClassCode', '=', 'timetable.ClassCode');
+            $join->on('TeacherInClass.SectionNo', '=', 'timetable.SectionNo');
+        })->where('TeacherInClass.tchID', '=', $tchID)
+        ->orderBy('TeacherInClass.ClassCode')
+        ->select('timetable.ClassCode as ClassCode', 'timetable.SectionNo as SectionNo', 'timetable.Day as Day', 'timetable.TimeStart as TS', 'timetable.TimeEnd as TE')
+        ->get();
+
+        return view('tch.tchHome', [
+            'inDepartment' => $inDepartment,
+            'totalClass' => $classes,
+            'timetable' => $time
+        ]);
     }
 
     public function responseClassIndex()
