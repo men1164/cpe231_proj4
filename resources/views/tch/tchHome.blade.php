@@ -55,7 +55,7 @@
                             <td class="border border-gray-400">{{ $time->ClassCode }}</td>
                             <td class="border border-gray-400">{{ $time->SectionNo }}</td>
                             <td class="border border-gray-400">{{ $time->Day }}</td>
-                            <td class="border border-gray-400">{{ $time->TS }} - {{ $time->TE }}</td>
+                            <td class="border border-gray-400">{{\Carbon\Carbon::createFromFormat('H:i:s',$time->TS)->format('H:i') }} - {{\Carbon\Carbon::createFromFormat('H:i:s',$time->TE)->format('H:i') }}</td>
                         </tr>
                         @endforeach
                     </tbody>

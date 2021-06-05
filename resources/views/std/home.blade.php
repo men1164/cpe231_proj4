@@ -44,11 +44,12 @@
                     @endif
                 </div>
             </div>
-            <div class="flex flex-col col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg pl-9 pt-9 pb-0">
-                <p class="text-2xl">Current GPAX</p>
-                <p class="font-semibold text-6xl mt-6">0.00</p>
+            <div class="flex flex-col justify-center items-center col-start-1 col-end-2 bg-white text-darkblue2 rounded-xl shadow-lg">
+                <p class="text-2xl text-center">Total Enrolled Class</p>
+                <p class="font-semibold text-6xl mt-6">{{ $totalEnroll }}</p>
             </div>
             <div class="flex justify-center items-center col-start-2 col-end-4 bg-white rounded-xl shadow-lg">
+            @if(!empty($timetable))
                 <table class="w-5/6 h-5/6 text-center" style="border-style: hidden;">
                     <thead>
                         <tr>
@@ -64,11 +65,14 @@
                             <td class="border border-gray-400">{{ $time->ClassCode }}</td>
                             <td class="border border-gray-400">{{ $time->SectionNo }}</td>
                             <td class="border border-gray-400">{{ $time->Day }}</td>
-                            <td class="border border-gray-400">{{ $time->TS }} - {{ $time->TE }}</td>
+                            <td class="border border-gray-400">{{\Carbon\Carbon::createFromFormat('H:i:s',$time->TS)->format('H:i') }} - {{\Carbon\Carbon::createFromFormat('H:i:s',$time->TE)->format('H:i') }}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+            @else
+                <p class="text-2xl text-center text-red-500">You have not enrolled any class.</p>
+            @endif
                 <!-- <div class="text-center text-sm">
                     <p class="font-semibold pb-2">DAY</p> 
                     <p>MON</p>

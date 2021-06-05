@@ -15,6 +15,7 @@ use App\Models\ClassSection;
 use App\Models\ClassInfo;
 use App\Models\Register;
 use App\Models\RegisterDetail;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -57,12 +58,30 @@ class HomeController extends Controller
                         ->where('FacultyID', '=', $inDepartment->FacultyID)
                         ->first();
 
+        $regis = User::join('register', 'users.id', '=', 'register.std_id')
+                    ->join('registerDetail', 'register.RegisterID', '=', 'registerDetail.RegisterID')
+                    ->where('users.id', '=', $stdID)
+                    ->count();
+
+        $time = User::join('register', 'users.id', '=', 'register.std_id')
+                    ->join('registerDetail', 'register.RegisterID', '=', 'registerDetail.RegisterID')
+                    ->join('timetable', function($join) {
+                        $join->on('registerDetail.ClassCode', '=', 'timetable.ClassCode');
+                        $join->on('registerDetail.SectionNo', '=', 'timetable.SectionNo');
+                    })
+                    ->where('users.id', '=', $stdID)
+                    ->orderBy('registerDetail.ClassCode')
+                    ->select('timetable.ClassCode as ClassCode', 'timetable.SectionNo as SectionNo', 'timetable.Day as Day', 'timetable.TimeStart as TS', 'timetable.TimeEnd as TE')
+                    ->get();
+
         return view('std.home', [
             'advisorLists' => $advisorLists,
             'advisorCount' => $advisorCount,
             'inProgram' => $inProgram,
             'inDepartment' => $inDepartment,
-            'inFaculty' => $inFaculty 
+            'inFaculty' => $inFaculty,
+            'totalEnroll' => $regis,
+            'timetable' => $time
             ]);
     }
 
