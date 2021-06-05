@@ -306,6 +306,16 @@ class AdminController extends Controller
         ]);
     }
 
+    public function newClassIndex()
+    {
+        $facLists = DB::table('facInfo')
+                        ->get();
+
+        return view('ad.adminInsertClass', [
+            'facLists' => $facLists
+        ]);
+    }
+
     /** Index function for profile editing page **/
     public function profileDetail()
     {
