@@ -102,7 +102,7 @@ Route::prefix('admin')->group(function ()
     Route::get('/newclass', [App\Http\Controllers\AdminController::class, 'newClassIndex'])->name('admin.newClassIndex');
     Route::post('/newclass', [App\Http\Controllers\AdminController::class, 'insertClass'])->name('admin.insertClass');
 
-    Route::get('/paymentAnalysis', [App\Http\Controllers\AdminController::class, 'payIndex'])->name('admin.payIndex');
+    Route::get('/teacherAnalysis', [App\Http\Controllers\AdminController::class, 'tchAnaIndex'])->name('admin.tchAnaIndex');
 
     Route::get('/profile', [App\Http\Controllers\AdminController::class, 'profileDetail'])->name('admin.profile');
     Route::post('/profile', [App\Http\Controllers\AdminController::class, 'profileUpdate'])->name('admin.updateProfile');

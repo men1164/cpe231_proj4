@@ -351,9 +351,16 @@ class AdminController extends Controller
         ]);
     }
 
-    public function payIndex()
+    public function tchAnaIndex()
     {
-        return view('ad.adminPayAna');
+        $tchs = Teacher::select('depInfo.DepartmentName as DepartmentName', DB::raw('count(tchUser.id) as totalTch'))
+                        ->rightJoin('depInfo', 'tchUser.DepartmentID', '=', 'depInfo.DepartmentID')
+                        ->groupBy('depInfo.DepartmentID')
+                        ->get();
+
+        return view('ad.adminTchAna', [
+            'tchs' => $tchs
+        ]);
     }
 
     /** Index function for profile editing page **/
