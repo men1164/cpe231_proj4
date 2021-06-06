@@ -38,7 +38,7 @@
                     <p class="ml-14 mt-5 text-red-600 text-sm">No students has enrolled this class.</p>
                 @else
                     <p class="ml-14 mt-2 text-xl text-kmutt-or">Total {{ $lists->count() }} students.</p>
-                    <div class="flex flex-col ml-14 mr-14 mt-2 h-3/5 w-auto">
+                    <div class="flex flex-col ml-14 mr-14 mt-2 h-1/2 w-auto">
                         <div class="flex-grow overflow-auto">
                             <table class="relative w-full border rounded-3xl">
                                 <thead>
